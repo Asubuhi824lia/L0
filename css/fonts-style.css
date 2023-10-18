@@ -7,6 +7,7 @@
     text-align: left;
 }
 
+
 /* styleName: Мобильный сайт/H2; */
 .available-card__title_font {
     font-family: Segoe UI;
@@ -33,7 +34,7 @@
     letter-spacing: 0px;
     text-align: right;
 }
-.total_btn-text {text-align: center; color: rgba(255, 255, 255, 1);}
+.total_text-align {text-align: center;}
 
 /* styleName: Сайт/Body-semibold; */
 .absent__title_font {
@@ -85,6 +86,13 @@
 
 .footer__caption-text {text-align: center; color: rgba(255, 255, 255, 0.7);}
 
+.card-num_font {
+    font-family: Segoe UI;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 18px;
+    text-align: center;
+}
 
 /*  styleName: Сайт/Body; 
     recipient (input) / total
@@ -96,7 +104,7 @@
     line-height: 24px;
 }
 
-
+.color_white {color: rgba(255, 255, 255, 1);}
 .color_pink  {color: rgba(203, 17, 171, 1);}
 .color_green {color: rgba(12, 180, 119, 1);}
 .color_red   {color: rgba(255, 59, 48, 1);}

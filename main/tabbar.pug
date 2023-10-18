@@ -1,0 +1,14 @@
+- var imgFolder = "../icons/tabbar/"
+- var tabbar = ["main", "catalog", "cart", "favorites", "profile"]
+- var cart_num = 3
+
+
+block tabbar
+    each item in tabbar 
+        if item=="cart"
+            a.tab-cart
+                +image(imgFolder+item+".svg", "28px")
+                .card-num_font.color_white.cart-num= cart_num
+        else
+            a.tab
+                +image(imgFolder+item+".svg", "28px")

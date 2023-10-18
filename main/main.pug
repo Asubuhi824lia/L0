@@ -7,11 +7,10 @@ html(lang="ru")
         link(rel="stylesheet", href="../css/main.css")
     body
         .wrapper.wrapper_bg-color
-            section.container
             header.header
                 block header
                     include header
-            main.main
+            main.main.main_bg-color-primary
                 section.basket
                     | Корзина
                     section.available
@@ -24,11 +23,12 @@ html(lang="ru")
                     section.way-pay
                         block way_pay
                     section.recipient
-                        block recipient
                         | Получатель
+                        block recipient
                 section.total
                     block total
             footer.footer
-                block footer
-            section.tabbar
+                p.caption_font.footer__caption-text © 2022  ООО «Товары и точка»
+            section.tabbar.main_bg-color-secondary
                 block tabbar
+                    include tabbar
