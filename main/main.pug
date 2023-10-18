@@ -1,0 +1,31 @@
+doctype html
+html(lang="ru")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Document
+    body 
+        section.container
+            header.header
+                block header
+            main.main
+                section.basket
+                    | Корзина
+                    section.choice
+                        block choice
+                    section.absent
+                        block absent
+                section.get
+                    section.way_delivery
+                        block way_delivery
+                    section.way_pay
+                        block way_pay
+                    section.recipient
+                        block recipient
+                        | Получатель
+                section.total
+                    block total
+            footer.footer
+                block footer
+        section.tabbar
+            block tabbar
