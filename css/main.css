@@ -1,0 +1,18 @@
+@import url("/fonts-style.css");
+
+.accent-color {background: rgba(203, 17, 171, 1);}
+.wrapper_bg-color {background: rgba(103, 37, 168, 1);}
+.main_bg-color-primary {background: rgba(246, 246, 250, 1);}
+.main_bg-color-secondary {background: rgba(255, 255, 255, 1);}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.wrapper {
+    width: 320px;
+}

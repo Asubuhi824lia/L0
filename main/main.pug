@@ -4,21 +4,24 @@ html(lang="ru")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title Document
-    body 
-        section.container
+        link(rel="stylesheet", href="../css/main.css")
+    body
+        .wrapper.wrapper_bg-color
+            section.container
             header.header
                 block header
+                    include header
             main.main
                 section.basket
                     | Корзина
-                    section.choice
-                        block choice
+                    section.available
+                        block available
                     section.absent
                         block absent
                 section.get
-                    section.way_delivery
+                    section.way-delivery
                         block way_delivery
-                    section.way_pay
+                    section.way-pay
                         block way_pay
                     section.recipient
                         block recipient
@@ -27,5 +30,5 @@ html(lang="ru")
                     block total
             footer.footer
                 block footer
-        section.tabbar
-            block tabbar
+            section.tabbar
+                block tabbar
