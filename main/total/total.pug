@@ -1,0 +1,41 @@
+include ../mixin
+
+-
+    var price = {
+        total: {title: "Итого", price: "2 101 063 сом"},
+        points: [
+            {title: "203 товара", price: "2 302 048 сом"},
+            {title: "Скидка", price: "−200 985 сом"},
+            {title: "Доставка", price: "Бесплатно"}
+        ]
+    }
+
+block total
+    .total__price
+        each category in price
+            if category.title == "Итого"
+                h3.total__price-total.get__title_font
+                    each point in category
+                        span= point
+            else
+                article.total__price-points
+                    each points in category
+                        p.total__price-point.text_font
+                            each point in points
+                                span= point
+    .bonus(class="bg-color_smoky-dark caption_font color_black")
+        +image("../icons/get/bonus_checked.svg", "22px")
+        p Обратная доставка товаров на склад при отказе — #[span.color_green.bonus__free_border-bottom бесплатно]
+    .write-off-way(class="bg-color_smoky-dark caption_font color_black")
+        label.choose 
+            input#pay-immediately(type="checkbox", name="")
+            span
+            | Списать оплату сразу
+        p.description= 'Спишем оплату с карты при получении'
+    button.total__order(class="bg-color_pink subtitle_font color_white")= "Заказать"
+    //- 
+    //- way-delivery__subtitle_font ???????
+    //- 
+    .total__agree(class="caption_font color_black")
+        +image("/icons/get/rules_checked.svg", "12.51px", "10.16px")
+        span Соглашаюсь с правилами пользования торговой площадкой и возврата

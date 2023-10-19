@@ -5,14 +5,14 @@ html(lang="ru")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title Document
         link(rel="stylesheet", href="../css/main.css")
-    body
+    body(class="text_font")
         .wrapper.wrapper_bg-color
             header.header
                 block header
                     include header
             main.main.main_bg-color-primary
                 section.basket
-                    | Корзина
+                    //- | Корзина
                     section.available
                         block available
                     section.absent
@@ -23,12 +23,13 @@ html(lang="ru")
                     section.way-pay
                         block way_pay
                     section.recipient
-                        | Получатель
+                        //- | Получатель
                         block recipient
                 section.total
                     block total
+                        include total/total
             footer.footer
-                p.caption_font.footer__caption-text © 2022  ООО «Товары и точка»
+                p.caption_font.footer__caption-text © 2022  ООО «Товары и точка»
             section.tabbar.main_bg-color-secondary
                 block tabbar
                     include tabbar

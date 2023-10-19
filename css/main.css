@@ -1,9 +1,10 @@
 @import url("./fonts-style.css");
 
-.accent-color {background: rgba(203, 17, 171, 1);}
+.bg-color_pink {background: rgba(203, 17, 171, 1);}
 .wrapper_bg-color {background: rgba(103, 37, 168, 1);}
 .main_bg-color-primary {background: rgba(246, 246, 250, 1);}
 .main_bg-color-secondary {background: rgba(255, 255, 255, 1);}
+.bg-color_smoky-dark {background: rgba(240, 236, 244, 1);}
 
 
 * {
@@ -24,13 +25,12 @@ header, .tabbar {height: 56px;}
     padding-left: 13px;
     padding-right: 13px;
 }
-
-
 .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
+
 
 #burger {padding: 4.75px 2.75px;}
 #burger, #search {
@@ -51,7 +51,99 @@ header, .tabbar {height: 56px;}
     border-radius: 24px;
 }
 
+.bonus {
+    display: grid;
+    align-items: center;
+    grid-template-columns: auto auto;
+    grid-column-gap: 8px;
+    padding: 8px 8px 12px;
+    border-radius: 8px;
+    margin-top: 16px;
+}
+.bonus__free_border-bottom {
+    border-bottom: 1px dashed rgba(12, 180, 119, 0.2);
+}
+
+.write-off-way {
+    padding: 8px 8px 12px; /*top X bottom*/
+    display: grid;
+    grid-template-rows: repeat(2, auto);
+    grid-row-gap: 8px;
+}
+.choose {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 22px auto;
+    grid-column-gap: 8px;
+    width: 100%;
+}
+.write-off-way {
+    margin-top: 16px;
+    border-radius: 8px;
+}
+#pay-immediately {
+    width: 22px;
+    height: 22px;
+    border-radius: 7px;
+}
+
+label input {
+    display: none;/* <--скрываем дефолтный чекбокс */
+}
+label span {/* <-- стилизируем новый */
+    width: 22px;
+    height: 22px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    display: inline-block;
+    position: relative;
+    border-radius:7px;
+    padding:3px;
+}
+[type=checkbox]:checked + span:before {/* <-- ставим иконку, когда чекбокс включен  */
+    content: url("/icons/get/bonus_checked.svg");
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* font-size:23px; */
+    color:white;
+}
+[type=checkbox]:checked + span {
+    background-color: rgba(203, 17, 171, 1);
+}
+
+.total__price-point, .total__price-total {
+    display: flex;
+    justify-content: space-between;
+}
+.total__price-points {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+.total__order {
+    width: 100%;
+    margin-top: 24px;
+    padding: 7.5px 0 12.5px;
+    border: none;
+    border-radius: 8px;
+}
+
+.total__agree {
+    display: grid;
+    align-items:start;
+    grid-template-columns: auto auto;
+    grid-column-gap: 8px;
+    margin-top: 12px;
+    margin-bottom: 16px;
+}
+.total__agree>img {
+    margin-top: 3.3px;
+}
+
+
 .footer {padding: 24px 0;}
+
 
 .tabbar {
     display: flex;
