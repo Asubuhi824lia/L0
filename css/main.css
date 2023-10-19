@@ -16,7 +16,7 @@
     width: 320px;
 }
 header {padding: 0 13px;}
-main, footer {
+.basket, .total, footer {
     padding-left: 16px;
     padding-right: 16px;
 }
@@ -30,7 +30,6 @@ header, .tabbar {height: 56px;}
     align-items: center;
     justify-content: space-between;
 }
-
 
 #burger {padding: 4.75px 2.75px;}
 #burger, #search {
@@ -50,6 +49,50 @@ header, .tabbar {height: 56px;}
     width: 320px;
     border-radius: 24px;
 }
+
+.get {
+    display: grid;
+    grid-template-rows: repeat(3, auto);
+    grid-row-gap: 12px;
+}
+.get>section {
+    padding: 16px 16px 24px; /* top X bottom */
+    border-radius: 16px;
+}
+
+
+.recipient input {
+    width: 100%;
+    height: 28px;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    position: relative;
+    left: -1px;
+}
+.recipient__field {
+    display: grid;
+    grid-template-rows: repeat(5, auto);
+    grid-row-gap: 16px;
+    margin-top: 8px;
+}
+.recipient__label {
+    display: grid;
+    grid-template-rows: repeat(3, auto);
+    height: 56px;
+}
+.recipient__label>input::placeholder {color: rgba(151, 151, 175, 1);}
+.recipient__label>input:focus {
+    color: rgba(0, 0, 0, 1);
+    outline: 0;
+}  
+.recipient__label-prompt {opacity: 0;}
+.phone {opacity: 1 !important;}
+.explain {
+    position: relative;
+    top: 3px;
+    left: -1px;
+}
+
 
 .bonus {
     display: grid;
@@ -87,10 +130,11 @@ header, .tabbar {height: 56px;}
     border-radius: 7px;
 }
 
-label input {
+.total {padding-top: 8px; padding-bottom: 16px; margin-top: 16px;}
+.total label input {
     display: none;/* <--скрываем дефолтный чекбокс */
 }
-label span {/* <-- стилизируем новый */
+.total label span {/* <-- стилизируем новый */
     width: 22px;
     height: 22px;
     border: 1px solid rgba(0, 0, 0, 0.2);
@@ -99,15 +143,17 @@ label span {/* <-- стилизируем новый */
     border-radius:7px;
     padding:3px;
 }
-[type=checkbox]:checked + span:before {/* <-- ставим иконку, когда чекбокс включен  */
-    content: url("/icons/get/bonus_checked.svg");
+.total [type=checkbox]:checked + span:before {/* <-- ставим иконку, когда чекбокс включен  */
+    content: url("/icons/get/item_checked.svg");
     position: absolute;
-    top: 0;
-    left: 0;
+    bottom: 6.52px;
+    right: 4.26px;
+    width: 12.48px;
+    height: 10.16px;
     /* font-size:23px; */
     color:white;
 }
-[type=checkbox]:checked + span {
+.total [type=checkbox]:checked + span {
     background-color: rgba(203, 17, 171, 1);
 }
 
@@ -120,7 +166,6 @@ label span {/* <-- стилизируем новый */
     display: flex;
     flex-direction: column;
 }
-
 .total__order {
     width: 100%;
     margin-top: 24px;
@@ -128,14 +173,12 @@ label span {/* <-- стилизируем новый */
     border: none;
     border-radius: 8px;
 }
-
 .total__agree {
     display: grid;
     align-items:start;
     grid-template-columns: auto auto;
     grid-column-gap: 8px;
     margin-top: 12px;
-    margin-bottom: 16px;
 }
 .total__agree>img {
     margin-top: 3.3px;
@@ -166,9 +209,7 @@ label span {/* <-- стилизируем новый */
     padding: 0 2px;
 }
 .tab-cart {position: relative;}
-.tab-cart img, .cart-num {
-    position: inherit;
-}
+.tab-cart img, .cart-num {position: inherit;}
 .tab-cart img {top: 14px;}
 .cart-num {
     left: calc(28px - (16px - 6px));

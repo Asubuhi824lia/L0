@@ -1,0 +1,18 @@
+-
+    var fields = [
+        {ru: "Имя", en: "name"}, 
+        {ru: "Фамилия", en: "surname"}, 
+        {ru: "Электронная почта", en: "email"}, 
+        {ru: "Телефон", en: "phone"}, 
+        {ru: "ИНН", en: "inn"}
+    ]
+
+
+block recipient
+    h3.get__title_font Получатель
+    .recipient__field
+        each title in fields
+            label.recipient__label
+                span.recipient__label-prompt(class="recipient__input-header_font recipient__input-header_color "+title.en)= title.ru
+                input.text_font(placeholder=title.ru, type="text")= title.en=="phone"?"+7 988 123-45-67":''
+                span.explain(class="recipient__input-header_font")= title.ru=="ИНН" ? 'Для таможенного оформления' : ' '
