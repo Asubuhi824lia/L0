@@ -1,0 +1,25 @@
+include ../mixin
+
+-
+    var point = {
+        address: "Бишкек, улица Ахматбека Суюмбаева, 12/1",
+        rating: "4.99",
+        schedule: "Ежедневно с 10 до 21"
+    }
+
+
+block way_delivery
+    +wayHeader('Способ доставки')
+    .way-delivery__point
+        h4.subtitle_font Пункт выдачи
+        p.text_font= point.address
+        .card-rating(class="caption_font")
+            +rating(point.rating)
+            span= point.schedule
+    .way-delivery__cost
+        h4.subtitle_font Стоимость доставки
+        p.text_font Бесплатно
+    .way-delivery__products
+        +productsMin(frames)
+    .way-delivery__bonus
+        +bonus

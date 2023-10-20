@@ -61,16 +61,51 @@ header, .tabbar {height: 56px;}
 }
 
 
+/* mixins */
+.bonus {
+    display: grid;
+    align-items: center;
+    grid-template-columns: auto auto;
+    grid-column-gap: 8px;
+}
+.way__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.rating {
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(2, max-content);
+    grid-column-gap: 4px;
+}
+
+
+
+.way-delivery__point {margin-top: 8px;}
+.card-rating {
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    grid-column-gap: 8px;
+    margin-top: 4px;
+}
+.way-delivery__cost, .way-delivery__goods {margin-top: 16px;}
+.way-delivery__bonus {
+    margin-top: 24px; 
+    padding: 0 8px;
+}
+.way-delivery__products {margin-top: 16px;}
+.frame:not(:last-child) {margin-bottom: 24px;}
+.frame>h3 {margin-bottom: 12px;}
+.frame__items, .frame__item {display: flex;}
+.frame__item {position: relative;} /* Для .cart-num */
+.frame__item:not(:last-child) {margin-right: 8px;}
+
 
 .way-pay {
     display: grid;
     grid-template-rows: repeat(3, auto);
     grid-row-gap: 8px;
-}
-.way-pay__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
 }
 .way-pay__card.text_font {
     display: grid;
@@ -118,11 +153,7 @@ header, .tabbar {height: 56px;}
 .recipient__label input:not(:placeholder-shown) ~ span {opacity: 1;}
 
 
-.bonus {
-    display: grid;
-    align-items: center;
-    grid-template-columns: auto auto;
-    grid-column-gap: 8px;
+.total__bonus {
     padding: 8px 8px 12px;
     border-radius: 8px;
     margin-top: 16px;
@@ -227,8 +258,8 @@ header, .tabbar {height: 56px;}
 .cart-num {
     background-color: rgba(245, 81, 35, 1);
     border-radius: 16px;
-    width: 16px;
     height: 16px;
+    min-width: 16px;
 
     display: flex;
     align-items: center;
@@ -238,7 +269,9 @@ header, .tabbar {height: 56px;}
 .tab-cart {position: relative;}
 .tab-cart img, .cart-num {position: inherit;}
 .tab-cart img {top: 14px;}
-.cart-num {
+.tab-cart__num {
+    position: relative;
     left: calc(28px - (16px - 6px));
-    bottom: calc(28px - 6px);
+    bottom: calc(28px - 4px);
+    width: 16px;
 }

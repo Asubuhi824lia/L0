@@ -23,9 +23,8 @@ block total
                         p.total__price-point.text_font
                             each point in points
                                 span= point
-    .bonus(class="bg-color_smoky-dark caption_font color_black")
-        +image("../icons/get/bonus_checked.svg", "22px")
-        p Обратная доставка товаров на склад при отказе — #[span.color_green.bonus__free_border-bottom бесплатно]
+    .total__bonus(class="bg-color_smoky-dark")
+        +bonus
     .write-off-way(class="bg-color_smoky-dark caption_font color_black")
         label.choose 
             input#pay-immediately(type="checkbox", name="")
