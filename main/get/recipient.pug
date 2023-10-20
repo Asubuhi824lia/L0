@@ -13,6 +13,6 @@ block recipient
     .recipient__field
         each title in fields
             label.recipient__label
-                span.recipient__label-prompt(class="recipient__input-header_font recipient__input-header_color "+title.en)= title.ru
-                input.text_font(placeholder=title.ru, type="text")= title.en=="phone"?"+7 988 123-45-67":''
                 span.explain(class="recipient__input-header_font")= title.ru=="ИНН" ? 'Для таможенного оформления' : ' '
+                input.text_font(placeholder=title.ru, type="text", value=title.en=="phone" ? '+7 988 123-45-67' : '')
+                span.recipient__label-prompt(class="recipient__input-header_font recipient__input-header_color "+title.en)= title.ru

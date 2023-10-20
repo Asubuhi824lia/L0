@@ -15,13 +15,14 @@ html(lang="ru")
                     //- | Корзина
                     section.available
                         block available
-                    section.absent
-                        block absent
+                    section.unavailable
+                        block unavailable
                 section.get
                     section.way-delivery(class="main_bg-color-secondary")
                         block way_delivery
                     section.way-pay(class="main_bg-color-secondary")
                         block way_pay
+                            include get/way_pay
                     section.recipient(class="main_bg-color-secondary")
                         block recipient
                             include get/recipient

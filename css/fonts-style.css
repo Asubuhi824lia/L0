@@ -28,7 +28,7 @@
 /*  styleName: Сайт/H4; 
     available / way_* (change) / total(btn)
 */
-.subtitle_font {
+.subtitle-accent_font {
     font-family: Segoe UI;
     font-size: 16px;
     font-weight: 700;
@@ -94,5 +94,5 @@
 .color_pink  {color: rgba(203, 17, 171, 1);}
 .color_green {color: rgba(12, 180, 119, 1);}
 .color_red   {color: rgba(255, 59, 48, 1);}
-.color_black {color: rgba(0, 0, 0, 1);} /* absent / way-pay / total / available-title / way-delivery / way-pay / recipient (user-input) / total */
+.color_black {color: rgba(0, 0, 0, 1);} /* unavailable / way-pay / total / available-title / way-delivery / way-pay / recipient (user-input) / total */
 .color_gray  {color: rgba(151, 151, 175, 1);} /* way-pay / basket / recipient (prompt-input) */

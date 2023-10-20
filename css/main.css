@@ -61,6 +61,29 @@ header, .tabbar {height: 56px;}
 }
 
 
+
+.way-pay {
+    display: grid;
+    grid-template-rows: repeat(3, auto);
+    grid-row-gap: 8px;
+}
+.way-pay__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.way-pay__card.text_font {
+    display: grid;
+    grid-template-columns: 32px auto;
+    grid-column-gap: 8px;
+}
+.card-info {
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    grid-column-gap: 12px;
+}
+
+
 .recipient input {
     width: 100%;
     height: 28px;
@@ -76,8 +99,8 @@ header, .tabbar {height: 56px;}
     margin-top: 8px;
 }
 .recipient__label {
-    display: grid;
-    grid-template-rows: repeat(3, auto);
+    display: flex;
+    flex-direction: column-reverse;
     height: 56px;
 }
 .recipient__label>input::placeholder {color: rgba(151, 151, 175, 1);}
@@ -86,12 +109,13 @@ header, .tabbar {height: 56px;}
     outline: 0;
 }  
 .recipient__label-prompt {opacity: 0;}
-.phone {opacity: 1 !important;}
 .explain {
     position: relative;
     top: 3px;
     left: -1px;
 }
+/* .recipient__label input:valid ~ span, */
+.recipient__label input:not(:placeholder-shown) ~ span {opacity: 1;}
 
 
 .bonus {
@@ -165,6 +189,9 @@ header, .tabbar {height: 56px;}
     margin-top: 8px;
     display: flex;
     flex-direction: column;
+/*  */
+    position: relative;
+    bottom: 1px;
 }
 .total__order {
     width: 100%;
