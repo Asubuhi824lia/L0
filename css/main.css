@@ -1,3 +1,6 @@
+@import url("./large.css");
+@import url("./desktop.css");
+
 @import url("./fonts-style.css");
 
 .bg-color_pink {background: rgba(203, 17, 171, 1);}
@@ -25,10 +28,6 @@ header {padding: 0 13px;}
     padding-right: 16px;
 }
 header, .tabbar {height: 56px;}
-.tabbar {
-    padding-left: 13px;
-    padding-right: 13px;
-}
 .header {
     display: flex;
     align-items: center;
@@ -48,10 +47,12 @@ header, .tabbar {height: 56px;}
 #search {padding: 4px 3.86px 3.86px 4px;}
 
 .main {
+    width: 320px;
     padding-top: 15px;
     padding-bottom: 24px;
-    width: 320px;
     border-radius: 24px;
+    display: flex;
+    flex-direction: column;
 }
 
 .get {
@@ -69,7 +70,7 @@ header, .tabbar {height: 56px;}
 .bonus {
     display: grid;
     align-items: center;
-    grid-template-columns: auto auto;
+    grid-template-columns: 22px auto;
     grid-column-gap: 8px;
 }
 .way__header {
@@ -374,7 +375,7 @@ header, .tabbar {height: 56px;}
 .total__agree {
     display: grid;
     align-items:start;
-    grid-template-columns: auto auto;
+    grid-template-columns: 12.51px auto;
     grid-column-gap: 8px;
     margin-top: 12px;
 }
@@ -389,6 +390,8 @@ header, .tabbar {height: 56px;}
 .tabbar {
     display: flex;
     justify-content: space-between;
+    padding-left: 13px;
+    padding-right: 13px;
 }
 .tab {
     margin: auto 0;

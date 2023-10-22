@@ -1,0 +1,10 @@
+@media (min-width: 320px) and (max-width: 1024px) {
+    body {
+        display: flex;
+        justify-content: center;
+    }
+    .wrapper, .main {
+        width: 100% !important;
+    }
+    .tabbar {display: none !important;}
+}
