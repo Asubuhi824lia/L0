@@ -26,9 +26,8 @@ block total
     .total__bonus(class="bg-color_smoky-dark")
         +bonus
     .write-off-way(class="bg-color_smoky-dark caption_font color_black")
-        label.choose 
-            input#pay-immediately(type="checkbox", name="")
-            span
+        .choose 
+            +checkbox(id="pay-immediately")
             | Списать оплату сразу
         p.description= 'Спишем оплату с карты при получении'
     button.total__order(class="bg-color_pink subtitle-accent_font color_white")= "Заказать"

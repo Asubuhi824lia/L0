@@ -1,0 +1,37 @@
+include ../mixin
+
+
+-
+    var cards = [
+        {
+            img: "/img/product1_monochrome.png", size: '56',
+            name:"Футболка UZcotton мужская", app:"Цвет: белый"
+        },
+        {
+            img: "/img/product2_monochrome.png", size: '',
+            name:"Силиконовый чехол картхолдер (отверстия) для...", app:"Цвет: прозрачный"
+        },
+        {
+            img: "/img/product3_monochrome.png",size: '56/54/52...',
+            name:'Карандаши цветные Faber-Castell "Замок", набор 24 цв...', app:""
+        }
+    ]
+
+
+block unavailable
+    .unavailable-header
+        h4.subtitle_font Отсутствуют · 3 товара
+        a.list-visibility
+            +image("/icons/basket/to_collapse.svg", "16px", "9.6px")
+    section.unavailable__products-list
+        each card in cards
+            .unavailable__card
+                .unavailable__card-header
+                    .unavailable__card-left
+                        +image(card.img, "80px", "106px")
+                        +size(card.size)
+                    .unavailable__card-right(class="color_gray")
+                        p(class="card-description_font")= card.name
+                        p(class="caption_font")= card.app
+                .unavailable__card-footer
+                    +actions

@@ -9,7 +9,7 @@
 
 
 /* styleName: Мобильный сайт/H2; */
-.available-card__title_font {
+.basket__title_font {
     font-family: Segoe UI;
     font-size: 20px;
     font-weight: 700;
@@ -86,6 +86,17 @@
     font-weight: 600;
     line-height: 18px;
 }
+
+/* styleName: Сайт/Lead; */
+ .counter_font {
+    font-family: Segoe UI;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+    text-align: center;
+}
+
 
 /*  styleName: Сайт/Body; 
     recipient (input) / total

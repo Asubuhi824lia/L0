@@ -5,18 +5,21 @@ html(lang="ru")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title Document
         link(rel="stylesheet", href="../css/main.css")
-    body(class="text_font")
+    body(class="text_font color_black")
         .wrapper.wrapper_bg-color
             header.header
                 block header
                     include header
             main.main.main_bg-color-primary
                 section.basket
-                    //- | Корзина
-                    section.available
-                        block available
-                    section.unavailable
-                        block unavailable
+                    h2.basket__title_font Корзина
+                    section.basket__content
+                        section.available
+                            block available
+                                include basket/available
+                        section.unavailable
+                            block unavailable
+                                include basket/unavailable
                 section.get
                     section.way-delivery(class="main_bg-color-secondary")
                         block way_delivery
