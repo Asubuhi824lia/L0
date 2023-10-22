@@ -4,7 +4,7 @@ include ../mixin
     var card_data = {num: "1234 56•• •••• 1234", validity: "01/30"}
 
 block way_pay
-    +wayHeader('Способ оплаты')
+    +wayHeader('Способ оплаты')(class="way-pay__header")
     .way-pay__card.text_font
         +image("/icons/get/mir_pay.svg", "32px", "24px")
         p.card-info

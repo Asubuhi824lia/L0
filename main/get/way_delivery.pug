@@ -12,10 +12,11 @@ block way_delivery
     +wayHeader('Способ доставки')
     .way-delivery__point
         h4.subtitle_font Пункт выдачи
-        p.text_font= point.address
-        .card-rating(class="caption_font")
-            +rating(point.rating)
-            span= point.schedule
+        .point-info
+            p.text_font= point.address
+            .card-rating(class="caption_font")
+                +rating(point.rating)
+                span= point.schedule
     .way-delivery__cost
         h4.subtitle_font Стоимость доставки
         p.text_font Бесплатно

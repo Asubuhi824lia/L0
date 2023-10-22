@@ -1,4 +1,16 @@
 @media (width > 1024px) {
+/* styleName: Сайт/H2; */
+.get__title_font {
+    font-size: 24px !important;
+    line-height: 32px !important;
+}
+.recipient__label-prompt {
+    font-size: 13px !important;
+    line-height: 16px !important;
+}
+
+
+
     body {
         display: flex;
         justify-content: center;
@@ -12,6 +24,7 @@
         grid-template-columns: clamp(640px, 62vw, 891px) clamp(303px, 29vw, 429px);
         column-gap: 32px;
         padding-left: 24px;
+        padding-bottom: 50px !important;
     }
     .basket__content, .basket, .get {
         width: 100% !important;
@@ -31,4 +44,41 @@
     }
     .tabbar {display: none !important;}
 
+
+    .way-delivery__point, .way-delivery__cost, .way-delivery__products>div {
+        display: grid !important;
+        grid-template-columns: 153px 405px;
+        column-gap: 32px;
+    }
+    .way-delivery__bonus {padding: 8px 0 0 !important;}
+    .way-delivery__point, .way-delivery__cost, .way-delivery__bonus {margin-top: 0 !important;}
+    .frame {margin: 0 !important;}
+    .get>section {
+        padding: 20px 24px 24px !important;
+    }
+    .way-delivery, .way-delivery__products {
+        display: grid !important;
+        row-gap: 16px !important;
+        margin-top: 0 !important;
+    }
+    .way_header>a {
+        position: relative;
+        right: 2px;
+    }
+    .way-pay__header {margin-bottom: 8px;}
+
+    .recipient__fields {
+        row-gap: 8px !important;
+        margin-top: 16px !important;
+    }
+    .recipient__field-block:first-child {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 24px;
+    }
+    .recipient__field-block:last-child {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: 24px;
+    }
 }
