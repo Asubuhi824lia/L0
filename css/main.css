@@ -99,6 +99,26 @@ header, .tabbar {height: 56px;}
     border-radius: 6px;
 }
 
+.available__card-apps span:not(:first-child), 
+.available__card-right .available__card-company,
+.available__card .available__card-price,
+.available__card-right p span:not(:first-child),
+.unavailable__card-right p span:not(:first-child) {
+    display: none;
+}
+
+.available__card-main .available__card-price {
+    display: grid;
+    grid-template-columns: max-content max-content;
+    column-gap: 5px;
+    align-items: end;
+}
+.available__price-value {
+    display: flex;
+    justify-content: flex-end;
+}
+
+
 /* ==================================================== */
 .checkbox input {
     display: none;/* <--скрываем дефолтный чекбокс */
@@ -155,10 +175,11 @@ header, .tabbar {height: 56px;}
 }
 .actions {
     display: flex;
+    justify-content: flex-end;
 }
 .actions>button {
-    width: 44px;
-    height: 100%;
+    padding: 0 12px;
+    height: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -206,10 +227,10 @@ header, .tabbar {height: 56px;}
 }
 
 
+.available__card:not(:last-child), .unavailable__card:not(:last-child) {margin-bottom: 16px;}
 .available__card, .unavailable__card {
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     padding-top: 12px;
-    margin-top: 16px;
     display: grid;
     grid-template-rows: repeat(2, auto);
     grid-row-gap: 12px;
@@ -238,13 +259,17 @@ header, .tabbar {height: 56px;}
     text-decoration: line-through;
     border-bottom: 1px dashed rgba(0, 0, 0, 0.2);
 }
+.available__price-value {}
 .available__card-main {
     width: 100%;
     display: grid;
     grid-template-rows: repeat(2, auto);
     grid-row-gap: 2px;
 }
-.available__card-right>p {margin-top: 8px;}
+.available__card-right>p {
+    margin-top: 8px;
+    flex-wrap: wrap;
+}
 
 
 .way-delivery__point {margin-top: 8px;}
@@ -382,6 +407,9 @@ header, .tabbar {height: 56px;}
 }
 .total__agree>img {
     margin-top: 3.3px;
+}
+.total__agree>p>span {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 

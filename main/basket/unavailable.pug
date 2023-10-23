@@ -5,15 +5,15 @@ include ../mixin
     var cards = [
         {
             img: "/img/product1_monochrome.png", size: '56',
-            name:"Футболка UZcotton мужская", app:"Цвет: белый"
+            name:"Футболка UZcotton мужская", apps:["Цвет: белый", "Размер: 56"]
         },
         {
             img: "/img/product2_monochrome.png", size: '',
-            name:"Силиконовый чехол картхолдер (отверстия) для...", app:"Цвет: прозрачный"
+            name:"Силиконовый чехол картхолдер (отверстия) для...", apps:["Цвет: прозрачный"]
         },
         {
             img: "/img/product3_monochrome.png",size: '56/54/52...',
-            name:'Карандаши цветные Faber-Castell "Замок", набор 24 цв...', app:""
+            name:'Карандаши цветные Faber-Castell "Замок", набор 24 цв...', apps:[""]
         }
     ]
 
@@ -31,7 +31,10 @@ block unavailable
                         +image(card.img, "80px", "106px")
                         +size(card.size)
                     .unavailable__card-right(class="color_gray")
-                        p(class="card-description_font")= card.name
-                        p(class="caption_font")= card.app
+                        p.unavailable__card-name(class="card-description_font")= card.name
+                        p(class="caption_font")
+                            each app in card.apps
+                                if app != ""
+                                    span(style="margin-right:16px;")= app
                 .unavailable__card-footer
                     +actions

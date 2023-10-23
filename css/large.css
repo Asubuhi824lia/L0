@@ -1,4 +1,4 @@
-@media (width > 1024px) {
+@media (width >= 1024px) {
 /* styleName: Сайт/H2; */
 .get__title_font {
     font-size: 24px !important;
@@ -7,6 +7,18 @@
 .recipient__label-prompt {
     font-size: 13px !important;
     line-height: 16px !important;
+}
+.header__title_font {font-size: 28px !important;}
+.basket__title_font {
+    font-size: 28px !important;
+    font-weight: 700 !important;
+    line-height: 36px !important;
+    letter-spacing: -0.01em !important;
+}
+.card-description_font {
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    line-height: 24px !important;
 }
 
 
@@ -19,20 +31,31 @@
         width: 100% !important;
         max-width: 1400px;
     }
+    .header {height: 88px !important;}
     .main {
         display: grid !important;
         grid-template-columns: clamp(640px, 62vw, 891px) clamp(303px, 29vw, 429px);
         column-gap: 32px;
         padding-left: 24px;
+        padding-top: 34px !important;
         padding-bottom: 50px !important;
     }
     .basket__content, .basket, .get {
         width: 100% !important;
         max-width: 891px;
     }
+    .basket {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    .basket__content {
+        margin-top: 27px !important;
+        grid-row-gap: 40px !important;
+    }
 
     .total {
         padding: 16px 24px 24px !important;
+        margin: 0 !important;
         height: fit-content;
         background: white;
         border-radius: 16px;
@@ -43,6 +66,81 @@
         box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.15);
     }
     .tabbar {display: none !important;}
+
+    .available__card .available__card-price {
+        display: flex !important;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+    .available__card-main .available__card-price {display: none !important;}
+
+    .available__card-apps span,
+    .available__card-right p span:not(:first-child),
+    .unavailable__card-right p span:not(:first-child) {
+        display: inline !important;
+    }
+    .available__card-right .available__card-company {
+        /* display: block !important; */
+        display: grid !important;
+        align-items: center;
+        grid-template-columns: max-content max-content;
+        column-gap: 10px;
+        margin-top: 4px !important;
+    }
+
+    
+    .amount, .available__card-footer {
+        flex-direction: column;
+    }
+    .actions, .counter, .available__card-amount {
+        margin-bottom: 8px;
+        width: 100%;
+        justify-content: center;
+    }
+    .counter {
+        height: 44px;
+        display: flex !important;
+        justify-content: space-between;
+    }
+    .counter>span:nth-child {
+        margin-top: 8px !important;
+        margin-bottom: 13px !important;
+    }
+    .counter__inc {padding: 12px 10px 16px 0 !important; justify-self: flex-end;}
+    .counter__dec {padding: 12px 0 16px 11px !important; justify-self: flex-start;}
+    .available__card-amount {margin-left: 0 !important; display: flex !important; justify-content: flex-start;}
+    .available__card-footer {align-items: stretch !important;}
+
+
+    .available__card, .unavailable__card {
+        border-top: none !important;
+    }
+    .list-visibility {padding-right: 2px !important;}
+    .available__card:not(:last-child), .unavailable__card:not(:last-child) {margin-bottom: 20px !important;}
+    .available__card, .unavailable__card {
+        grid-template-columns: 1fr 100px 110px;
+        column-gap: 16px;
+        grid-template-rows: auto !important;
+    }
+    .actions>button {
+        padding: 0!important;
+        padding-left: 16px !important;
+    }
+    .unavailable__card-left img, .available__card-left img { width: 72px !important; height: 96px !important;}
+    .available__card-header {grid-template-columns: calc(72px + 22px + 12px) 275px !important;}
+    .unavailable__card-header {grid-template-columns: 72px 309px !important;}
+    .available__card-left .checkbox {
+        position: static !important;
+    }
+    .available__card-left {
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        height: fit-content;
+    }
+    .checkbox {
+        display: flex;
+        align-items: center;
+    }
 
 
     .way-delivery__point, .way-delivery__cost, .way-delivery__products>div {
