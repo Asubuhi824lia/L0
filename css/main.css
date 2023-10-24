@@ -252,7 +252,8 @@ header, .tabbar {height: 56px;}
     text-align: end;
 }
 
-.list-visibility {
+.list-visibility, .checkbox, .counter__dec, .counter__inc, .actions>button,
+.edit-btn, .change-btn, input, .tab, .header__point, #burger {
     cursor: pointer;
 }
 
