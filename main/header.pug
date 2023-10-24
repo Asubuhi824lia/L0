@@ -1,9 +1,29 @@
 include mixin
 
+- var cart_num = 3
 
 block header
-    a#burger
-        +image('../icons/header/burger.svg', '22.5px', '18.5px')
-    h1.site-header.color_white.header__title_font= 'товары и точка'
-    a#search
-        +image('../icons/header/search.svg', '20.14px')
+    .header__mobile
+        a#burger
+            +image('../icons/header/burger.svg', '22.5px', '18.5px')
+        h1.site-header.color_white.header__title_font= 'товары и точка'
+        a#search
+            +image('../icons/header/search.svg', '20.14px')
+    .header__large
+        .header__left 
+            a#burger
+                +image('../icons/header/burger-large.svg', '48px')
+            h1.site-header.color_white.header__title_font= 'товары и точка'
+        .header__search 
+            input#search-input(type="text", value="Я ищу...")
+            +image("/icons/header/search.svg", "24px")
+        .header__right
+            .header__point
+                .header__point-item
+                    +image("/icons/header/profile.svg", "28px")
+                p.caption_font Профиль
+            .header__point
+                .header__point-item
+                    +image("/icons/header/cart.svg", "28px")
+                    +cartNum(cart_num)(class="tab-cart__num tabbar__card-num_font")
+                p.caption_font Корзина

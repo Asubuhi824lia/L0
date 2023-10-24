@@ -31,7 +31,16 @@
         width: 100% !important;
         max-width: 1400px;
     }
-    .header {height: 88px !important;}
+    .header {
+        height: 88px !important;
+        /* padding: 16px 20px 16px 24px !important; */
+        padding-right: 20px !important; 
+        padding-left: 24px !important;
+    }
+    .header__mobile {display: none !important;}
+    .header__large {
+        display: grid !important;
+    }
     .main {
         display: grid !important;
         grid-template-columns: clamp(640px, 62vw, 891px) clamp(303px, 29vw, 429px);

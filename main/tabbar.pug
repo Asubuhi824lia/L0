@@ -10,7 +10,7 @@ block tabbar
     each item in tabbar 
         if item=="cart"
             a.tab-cart
-                +image(imgFolder+item+".svg", "28px")
+                +image(imgFolder+"cart-sel"+".svg", "28px")
                 +cartNum(cart_num)(class="tab-cart__num tabbar__card-num_font")
         else
             a.tab

@@ -4,7 +4,6 @@
     font-weight: 600;
     line-height: 24px;
     letter-spacing: 0.02em;
-    text-align: left;
 }
 
 
@@ -15,7 +14,6 @@
     font-weight: 700;
     line-height: 28px;
     letter-spacing: -0.01em;
-    text-align: left;
 }
 /* styleName: Мобильный сайт/Body-2; */
 .card-description_font {
