@@ -21,9 +21,9 @@ include ../mixin
 block unavailable
     .unavailable-header
         h4.subtitle_font Отсутствуют · 3 товара
-        a.list-visibility
+        a.list-visibility#collapseUnavailable
             +image("/icons/basket/to_collapse.svg", "16px", "9.6px")
-    section.unavailable__products-list
+    section#unavailable__products-list
         each card in cards
             .unavailable__card
                 .unavailable__card-header

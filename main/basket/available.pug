@@ -28,9 +28,9 @@ block available
     .available-header
         +checkbox(id="selectAll")
         span.text_font Выбрать все
-        a.list-visibility
+        a.list-visibility#collapseAvailable
             +image("/icons/basket/to_collapse.svg", "16px", "9.6px")
-    section.available__products-list
+    section#available__products-list
         each card in cards
             .available__card
                 .available__card-header

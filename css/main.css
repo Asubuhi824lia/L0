@@ -253,18 +253,17 @@ header, .tabbar {height: 56px;}
 }
 
 .list-visibility {
-    text-align: end;
-    padding-right: 6px;
+    cursor: pointer;
 }
 
 .available-header {
     display: grid;
     align-items: center;
-    grid-template-columns: 22px auto 44px;
+    grid-template-columns: 22px auto 16px;
     grid-column-gap: 11px;
 }
 .available-header>p, .unavailable-header>p {display: block;}
-.available__products-list, .unavailable__products-list {
+#available__products-list, #unavailable__products-list {
     margin-top: 16px;
 }
 
@@ -301,7 +300,6 @@ header, .tabbar {height: 56px;}
     text-decoration: line-through;
     border-bottom: 1px dashed rgba(0, 0, 0, 0.2);
 }
-.available__price-value {}
 .available__card-main {
     width: 100%;
     display: grid;
