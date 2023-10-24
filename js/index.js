@@ -6,7 +6,6 @@ const cards = [
     short: 'Карандаши цветные Faber-Castell "Замок", набор 24 цв'}
 ]
 
-
 function onResize() 
 {
     if(window.innerWidth >= 1024) {
@@ -51,3 +50,10 @@ function onResize()
 
 document.addEventListener("DOMContentLoaded", onResize)
 window.addEventListener("resize", onResize)
+
+
+document.getElementById("selectAll").addEventListener("click", (main) => {
+    Array.from(document.getElementsByClassName("available__card-checkbox")).forEach((element) => {
+        element.checked = main.target.checked;
+    })
+})

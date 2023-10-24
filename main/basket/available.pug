@@ -26,7 +26,7 @@ include ../mixin
 
 block available
     .available-header
-        +checkbox
+        +checkbox(id="selectAll")
         span.text_font Выбрать все
         a.list-visibility
             +image("/icons/basket/to_collapse.svg", "16px", "9.6px")
@@ -36,8 +36,8 @@ block available
                 .available__card-header
                     .available__card-left
                         +image(card.img, "80px", "106px")
-                        +checkbox
-                            +size(card.size)
+                        +checkbox(class="available__card-checkbox")
+                        +size(card.size)
                     .available__card-right
                         .available__card-main
                             .available__card-price
