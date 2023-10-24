@@ -23,8 +23,19 @@ block total
                         p.total__price-point.text_font
                             each point in points
                                 span= point
+    .total__way-delivery
+        .total__way-pay-header
+            .subtitle-accent_font Доставка в пункт выдачи
+            +image("/icons/get/edit.svg", "16px")
+        p.caption_font Бишкек, улица Ахматбека Суюмбаева, 12/1
+        span.caption_font.color_pink(style="border-bottom: 1px dashed rgba(203, 17, 171, .2);") 5–8 фев
     .total__bonus(class="bg-color_smoky-dark")
         +bonus
+    .total__way-pay
+        .total__way-pay-header
+            .subtitle-accent_font Оплата картой
+            +image("/icons/get/edit.svg", "16px")
+        +cardInfo(class="caption_font")
     .write-off-way(class="bg-color_smoky-dark caption_font color_black")
         .choose 
             +checkbox(id="pay-immediately")
@@ -33,8 +44,4 @@ block total
     button.total__order(class="bg-color_pink subtitle-accent_font color_white")= "Заказать"
     .total__agree(class="caption_font color_black")
         +image("/icons/get/rules_checked.svg", "12.51px", "10.16px")
-        p 
-            | Соглашаюсь 
-            span  с правилами пользования торговой площадкой
-            | #{' и '}
-            span возврата
+        p Соглашаюсь #[span  с правилами пользования торговой площадкой] и #[span  возврата]
