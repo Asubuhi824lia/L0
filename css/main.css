@@ -492,13 +492,12 @@ header, .tabbar {height: 56px;}
 .tab-cart {position: relative;}
 .cart-num {position: inherit;}
 .tab-cart img {top: 14px;}
-.tab-cart__num {
+.tab-cart__num, .tab-favorites__num {
     position: absolute;
-    /* left: calc(28px - (16px - 6px));
-    bottom: calc(28px - 4px); */
     width: 16px;
 }
-.tabbar .tab-cart__num {
+.tabbar .tab-cart__num,
+.tabbar .tab-favorites__num {
     top: -4px;
     right: -6px;
 }

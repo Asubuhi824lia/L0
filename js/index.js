@@ -56,11 +56,39 @@ function onResize()
 function addIncItemListener() {}
 function addDecItemListener() {}
 
-function addToggleFavoriteCardListener() {}
+function addToggleFavoriteCardListener() 
+{
+    cards.forEach(item => {
+        const cardElems = document.getElementsByClassName(`card-${item.id}`)
+        Array.from(cardElems).forEach(elem => {
+            const likeBtn = elem.querySelector(".actions__to-like")
+            likeBtn.addEventListener("click", () => likeCard(Array.from(cardElems)))
+        })
+    })
+}
+function likeCard(cardElems) {
+    const likeNum = document.getElementsByClassName("tab-favorites__num")
+    const likes = Number(Array.from(likeNum)[0].innerText)
+    Array.from(likeNum).forEach(elem => elem.style.display = 'flex')
+    
+    cardElems.forEach(elem => {
+        const img = elem.querySelector(".actions__to-like img")
+        const isLiked = (img.attributes.src.value.includes("to_like")) ? false : true
+        if(isLiked) {
+            img.attributes.src.value = "/icons/basket/to_like.svg"
+            if(likes!=0) Array.from(likeNum).forEach(elem => elem.innerText = likes-1)
+            if(likes-1==0) Array.from(likeNum).forEach(elem => elem.style.display = 'none')
+        }
+        else {
+            img.attributes.src.value = "/icons/basket/liked.svg"            
+            Array.from(likeNum).forEach(elem => elem.innerText = likes+1)
+        }
+    })
+}
+
 function addDelCardListener() 
 {
     cards.forEach(item => {
-        console.log(item.id)
         const card = document.getElementsByClassName(`card-${item.id}`)
         Array.from(card).forEach(elem => {
             const delBtn = elem.querySelector(".actions__to-basket")
@@ -68,7 +96,6 @@ function addDelCardListener()
         })
     })
 }
-
 function delCard(elems, index) {
     cards = cards.filter(card => card.id != index)
     // fetch("", {method: POST, headers: {'Content-Type': 'application/json'} body: JSON.stringify(cards)})
