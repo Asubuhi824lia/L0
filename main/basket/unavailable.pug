@@ -4,16 +4,19 @@ include ../mixin
 -
     var cards = [
         {
+            id: 1,
             img: "/img/product1_monochrome.png", size: '56',
             name:"Футболка UZcotton мужская", apps:["Цвет: белый", "Размер: 56"]
         },
         {
+            id: 2,
             img: "/img/product2_monochrome.png", size: '',
-            name:"Силиконовый чехол картхолдер (отверстия) для...", apps:["Цвет: прозрачный"]
+            name:"", apps:["Цвет: прозрачный"]
         },
         {
+            id: 3,
             img: "/img/product3_monochrome.png",size: '56/54/52...',
-            name:'Карандаши цветные Faber-Castell "Замок", набор 24 цв...', apps:[""]
+            name:'', apps:[""]
         }
     ]
 
@@ -25,7 +28,7 @@ block unavailable
             +image("/icons/basket/to_collapse.svg", "16px", "9.6px")
     section#unavailable__products-list
         each card in cards
-            .unavailable__card
+            .unavailable__card(class= "card-"+card.id)
                 .unavailable__card-header
                     .unavailable__card-left
                         +image(card.img, "80px", "106px")

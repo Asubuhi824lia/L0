@@ -1,10 +1,5 @@
-const cards = [
-    {name: 'Футболка UZcotton мужская'},
-    {name: 'Силиконовый чехол картхолдер (отверстия) для карт, прозрачный кейс бампер на Apple iPhone XR, MobiSafe',
-    short: 'Силиконовый чехол картхолдер (отверстия) для'},
-    {name: 'Карандаши цветные Faber-Castell "Замок", набор 24 цвета, заточенные, шестигранные, Faber-Castell',
-    short: 'Карандаши цветные Faber-Castell "Замок", набор 24 цв'}
-]
+let cards;
+let card_names = [];
 
 function onResize() 
 {
@@ -25,11 +20,11 @@ function onResize()
 
         let available__card = Array.from(document.querySelectorAll(".available__card-name"))
         let unavailable__card = Array.from(document.querySelectorAll(".unavailable__card-name"))
-        cards.forEach((card, index) => {
-            if(available__card[index].innerText == card.name) return;
+        card_names.forEach((card, index) => {
+            if(available__card[index].innerText == card.full) return;
             else {
-                available__card[index].innerText = card.name;
-                unavailable__card[index].innerText = card.name;
+                available__card[index].innerText = card.full;
+                unavailable__card[index].innerText = card.full;
             }
         })
     } else {
@@ -49,7 +44,7 @@ function onResize()
 
         let available__card = Array.from(document.querySelectorAll(".available__card-name"))
         let unavailable__card = Array.from(document.querySelectorAll(".unavailable__card-name"))
-        cards.forEach((card, index) => {
+        card_names.forEach((card, index) => {
             if(card.short) {
                 available__card[index].innerText   = card.short+"..."
                 unavailable__card[index].innerText = card.short+"..."
@@ -58,8 +53,56 @@ function onResize()
     }
 }
 
-document.addEventListener("DOMContentLoaded", onResize)
+function addIncItemListener() {}
+function addDecItemListener() {}
+
+function addToggleFavoriteCardListener() {}
+function addDelCardListener() 
+{
+    cards.forEach(item => {
+        console.log(item.id)
+        const card = document.getElementsByClassName(`card-${item.id}`)
+        Array.from(card).forEach(elem => {
+            const delBtn = elem.querySelector(".actions__to-basket")
+            delBtn.addEventListener("click", () => delCard(Array.from(card), item.id))
+        })
+    })
+}
+
+function delCard(elems, index) {
+    cards = cards.filter(card => card.id != index)
+    // fetch("", {method: POST, headers: {'Content-Type': 'application/json'} body: JSON.stringify(cards)})
+
+    elems.forEach(elem => elem.remove())
+
+    const unavNum = document.getElementById("unavailable__products-list").childElementCount
+    document.querySelector(".unavailable-header h4").innerText = `Отсутствуют · ${unavNum} товара`
+
+    const cartNum = document.getElementsByClassName("tab-cart__num")
+    Array.from(cartNum).forEach(elem => {
+        elem.innerText = unavNum
+        if(unavNum == 0) elem.remove()
+    })
+
+}
+
+
+fetch('/json/data.json')
+    .then(response => response.json())
+    .then(data => {
+        data.cards.forEach(card => {
+            card_names.push(card.name)
+        })
+        console.log(card_names)
+        cards = data.cards
+    }).then(() => {
+        onResize()
+        addDelCardListener()
+        addToggleFavoriteCardListener()
+    })
+    .catch(error => console.log(error))
 window.addEventListener("resize", onResize)
+
 
 
 document.getElementById("selectAll").addEventListener("click", (main) => {
@@ -89,4 +132,12 @@ document.getElementById("collapseUnavailable").addEventListener("click", (el) =>
         list.style.display = 'block'
         el.target.style.transform = 'rotate(0deg)'
     }
+})
+
+
+document.getElementsByClassName("actions__to-basket").addEventListener("click", (el) => {
+    /**Delete from Data = 
+     * 1. available / unavailable
+     * 2. tabbar / header
+     */
 })

@@ -93,6 +93,7 @@
         align-items: flex-end;
     }
     .available__card-main .available__card-price, .tabbar {display: none !important;}
+    .tabbar {display: none !important;}
 
     .available__card-apps span,
     .available__card-right p span:not(:first-child),

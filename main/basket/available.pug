@@ -4,21 +4,24 @@ include ../mixin
 -
     var cards = [
         {
+            id: 1,
             img: "/img/product1_preview.png", size: '56',
             cost:"522", cy:" сом", prev_cost:"1051", quantity: 1,
             name:"Футболка UZcotton мужская", 
             apps:["Цвет: белый", "Размер: 56"], warehouse:"Коледино WB", firm: "OOO Вайлдберриз", left: '2'
         },
         {
+            id: 2,
             img: "/img/product2_preview.png", size: '',
             cost:"2 100 047", cy:" сом", prev_cost:"2 300 047", quantity: 200,
-            name:"Силиконовый чехол картхолдер (отверстия) для...", 
+            name:"", 
             apps:["Цвет: прозрачный"], warehouse:"Коледино WB", firm: "OOO Мегапрофстиль", left: '10'
         },
         {
+            id: 3,
             img: "/img/product3_preview.png", size: '',
             cost:"494", cy:" сом", prev_cost:"950", quantity: 2,
-            name:'Карандаши цветные Faber-Castell "Замок", набор 24 цв...', 
+            name:"", 
             apps:[""], warehouse:"Коледино WB", firm: "OOO Вайлдберриз", left: '2'
         }
     ]
@@ -32,7 +35,7 @@ block available
             +image("/icons/basket/to_collapse.svg", "16px", "9.6px")
     section#available__products-list
         each card in cards
-            .available__card
+            .available__card(class= "card-"+card.id)
                 .available__card-header
                     .available__card-left
                         +image(card.img, "80px", "106px")

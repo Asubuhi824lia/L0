@@ -1,5 +1,5 @@
 @import url("./large.css");
-@import url("./desktop.css");
+@import url("./tablet.css");
 
 @import url("./fonts-style.css");
 
@@ -490,13 +490,21 @@ header, .tabbar {height: 56px;}
     padding: 0 2px;
 }
 .tab-cart {position: relative;}
-.tab-cart img, .cart-num {position: inherit;}
+.cart-num {position: inherit;}
 .tab-cart img {top: 14px;}
 .tab-cart__num {
-    position: relative;
-    left: calc(28px - (16px - 6px));
-    bottom: calc(28px - 4px);
+    position: absolute;
+    /* left: calc(28px - (16px - 6px));
+    bottom: calc(28px - 4px); */
     width: 16px;
+}
+.tabbar .tab-cart__num {
+    top: -4px;
+    right: -6px;
+}
+.header__point .tab-cart__num {
+    top: -5px;
+    right: -10px;
 }
 
 .header__point {
