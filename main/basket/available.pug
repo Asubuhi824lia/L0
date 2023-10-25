@@ -15,7 +15,7 @@ include ../mixin
             img: "/img/product2_preview.png", size: '',
             cost:"2 100 047", cy:" сом", prev_cost:"2 300 047", quantity: 200,
             name:"", 
-            apps:["Цвет: прозрачный"], warehouse:"Коледино WB", firm: "OOO Мегапрофстиль", left: '10'
+            apps:["Цвет: прозрачный"], warehouse:"Коледино WB", firm: "OOO Мегапрофстиль", left: '230'
         },
         {
             id: 3,
@@ -59,10 +59,10 @@ block available
                             +image("/icons/basket/info.svg", "16px")
                 .available__card-footer
                     .amount
-                        +counter(card.quantity)
+                        +counter(card.quantity, card.left)
                         if card.left < 5
                             .available__card-amount
-                                span.caption_font.color_red= 'Осталось '+card.left+' шт.'
+                                span.left-amount(class="caption_font color_red")= 'Осталось '+card.left+' шт.'
                     +actions
                 .available__card-price
                     .available__price-value

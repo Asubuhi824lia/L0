@@ -53,8 +53,40 @@ function onResize()
     }
 }
 
-function addIncItemListener() {}
-function addDecItemListener() {}
+function addIncItemListener() 
+{
+    cards.forEach(item => {
+        let cardElems = document.querySelector(`.available__card.card-${item.id}`)
+        let incBtn = cardElems.getElementsByClassName("counter__inc")[0]
+        incBtn.addEventListener("click", () => incItem(cardElems, item.left))
+    })
+}
+function incItem(elem, left) {
+    let num = elem.querySelector(".counter__num")
+    const curNum = Number(num.innerText)
+
+    if(curNum == left) return
+    if(curNum+1 == left) elem.querySelector(".counter__inc").style.color = "rgba(0, 0, 0, 0.2)"
+    if(curNum+1 == 2) elem.querySelector(".counter__dec").style.color = "rgba(0, 0, 0, 1)"
+    num.innerText = curNum+1
+}
+
+function addDecItemListener() 
+{
+    cards.forEach(item => {
+        let cardElems = document.querySelector(`.available__card.card-${item.id}`)
+        let decBtn = cardElems.querySelector(".counter__dec")
+        decBtn.addEventListener("click", () => decItem(cardElems, item.left))
+    })
+}
+function decItem(elem, left) {
+    let num = elem.querySelector(".counter__num")
+    const curNum = Number(num.innerText)
+
+    if(curNum > 1) num.innerText = curNum-1
+    if(curNum == 1) elem.querySelector(".counter__dec").style.color = "rgba(0, 0, 0, 0.2)"
+    if(curNum == left) elem.querySelector(".counter__inc").style.color = "rgba(0, 0, 0, 1)"
+}
 
 function addToggleFavoriteCardListener() 
 {
@@ -120,12 +152,15 @@ fetch('/json/data.json')
         data.cards.forEach(card => {
             card_names.push(card.name)
         })
-        console.log(card_names)
         cards = data.cards
     }).then(() => {
         onResize()
+
         addDelCardListener()
         addToggleFavoriteCardListener()
+
+        addIncItemListener()
+        addDecItemListener()
     })
     .catch(error => console.log(error))
 window.addEventListener("resize", onResize)
@@ -159,12 +194,4 @@ document.getElementById("collapseUnavailable").addEventListener("click", (el) =>
         list.style.display = 'block'
         el.target.style.transform = 'rotate(0deg)'
     }
-})
-
-
-document.getElementsByClassName("actions__to-basket").addEventListener("click", (el) => {
-    /**Delete from Data = 
-     * 1. available / unavailable
-     * 2. tabbar / header
-     */
 })
