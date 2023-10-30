@@ -222,49 +222,42 @@ const inputs = {
     phone: '',
     inn: ''
 }
+let isFieldsValid = [false, false, false, false, false]    // Все ли поля заполнены валидными значениями?
 
 document.getElementById("total__order").addEventListener("click", orderBtn => {
     fields.forEach(field => {
-        let name = document.querySelector(`#${field} input`).value
-        if(!name || name.trim().length == 0) {
-            document.querySelector(`#${field} .explain`).innerText = inputErrs[field].empty
-            document.querySelector(`#${field} .explain`).style.display = 'inline'
-            document.querySelector(`#${field} .explain`).classList.add("color_red")
-        }
-        else if(field=="inn"&&name.trim().length < 14) {
-            document.querySelector(`#${field} .explain`).innerText = inputErrs[field].content
-            document.querySelector(`#${field} .explain`).style.display = 'inline'
-            document.querySelector(`#${field} .explain`).classList.add("color_red")
-        }
-        else if(field=="phone") {
-            console.log(field)
-            
-            let input = document.querySelector(`#${field} input`)
-
-            let isMatch = input.value.match(/^[\+]?\d\s\d{3}\s\d{3}\s\d{2}\s\d{2}$/)
-            console.log(isMatch)
-
-            if(!isMatch){
-                document.querySelector(`#${field} .explain`).innerText = inputErrs[field].content
-                document.querySelector(`#${field} .explain`).style.display = 'inline'
-                document.querySelector(`#${field} .explain`).classList.add("color_red")
-            }
-        }
-    });
-
-    if(!isProcessed) {
-        isProcessed = true
-        
-        fields.forEach(field => {
-            document.querySelector(`#${field} input`).addEventListener("input", input => {
+        if(!isProcessed) {
+            fields.forEach(field => {
+                const input = document.querySelector(`#${field} input`)
                 checkEmpty(input, field)
-                
-                if(field=="phone") checkPhone(input)
-                else if(field=="inn") checkInn(input)
-                else if(field=="email") checkEmail(input)
+
+                if(field=="phone") 
+                    checkPhone(input)
+                else if(field=="inn") 
+                    checkInn(input)
+                else if(field=="email") 
+                    checkEmail(input)
+                else if(field=="surname" || field=="name")
+                    checkName(input, field)
+
+
+                document.querySelector(`#${field} input`).addEventListener("input", input => {
+                    checkEmpty(input.target, field)
+                    
+                    if(field=="phone") 
+                        checkPhone(input.target)
+                    else if(field=="inn") 
+                        checkInn(input.target)
+                    else if(field=="email") 
+                        checkEmail(input.target)
+                    else if(field=="surname" || field=="name")
+                        checkName(input.target, field)
+                })
             })
-        })
-    }
+        }
+    })
+    
+    console.log(isFieldsValid.filter(value => value==true).length == isFieldsValid.length)
 })
 
 fields.forEach(field => {
@@ -282,41 +275,76 @@ fields.forEach(field => {
 
 
 function checkEmpty(input, field) {
-    // console.log(fields.indexOf(field))
-    if(input.target.value.length > 0) document.querySelector(`#${field} .explain`).style.visibility = 'hidden'
+    if(input.value.length > 0) document.querySelector(`#${field} .explain`).style.visibility = 'hidden'
     else {
         document.querySelector(`#${field} .explain`).innerText = inputErrs[field].empty
+        document.querySelector(`#${field} .explain`).style.display = 'inline'
         document.querySelector(`#${field} .explain`).style.visibility = 'visible'
+        document.querySelector(`#${field} .explain`).classList.add("color_red")
+        
+        if(field=="inn") {
+            document.querySelector(`#inn .recipient__label-prompt`).innerText = 'ИНН для таможни'
+            document.querySelector(`#inn .recipient__label-prompt`).style.opacity = 1
+        }
+    }
+}
+function checkName(input, field) {
+    let isMatch = input.value.match(/^[A-Zа-я]+$/i)
+    if(isMatch) {
+        if(field=="name") 
+            isFieldsValid[0] = true
+        if(field=="surname") 
+            isFieldsValid[1] = true
+    } else {
+        if(field=="name") 
+            isFieldsValid[0] = false
+        if(field=="surname") 
+            isFieldsValid[1] = false
     }
 }
 function checkEmail(input) {
-    let isMatch = input.target.value.match(/^[\w]{1}[\w-\.]*@[\w-]+\.[a-z]{2,4}$/i)
-    console.log(isMatch)
-    console.log(input.target.value)
-    if(!isMatch) {
-        document.querySelector(`#email .explain`).innerText = inputErrs.email.content
-        document.querySelector(`#email .explain`).style.visibility = 'visible'
-        document.querySelector(`#email .explain`).classList.add("color_red")
-    } else {
-        inputs.email = isMatch.input
+    if(input.value.length > 0) {
+        let isMatch = input.value.match(/^[\w]{1}[\w-\.]*@[\w-]+\.[a-z]{2,4}$/i)
+        if(!isMatch) {
+            document.querySelector(`#email .explain`).innerText = inputErrs.email.content
+            document.querySelector(`#email .explain`).style.visibility = 'visible'
+            document.querySelector(`#email .explain`).classList.add("color_red")
+            isFieldsValid[2] = false
+        } else {
+            inputs.email = isMatch.input
+            isFieldsValid[2] = true
+        }
     }
 }
 function checkPhone(input) {
-    let isMatch = input.target.value.match(/^[\+]?\d\s\d{3}\s\d{3}\s\d{2}\s\d{2}$/)
-    console.log(isMatch)
-    if(isMatch) document.querySelector(`#phone .explain`).style.visibility = 'hidden'
-    else {
-        document.querySelector(`#phone .explain`).innerText = inputErrs.phone.content
-        document.querySelector(`#phone .explain`).style.visibility = 'visible'
+    if(input.value.length > 0) {
+        let isMatch = input.value.match(/^[\+]?\d\s\d{3}\s\d{3}\s\d{2}\s\d{2}$/)
+        if(isMatch) {
+            document.querySelector(`#phone .explain`).style.visibility = 'hidden'
+            isFieldsValid[3] = true
+        }
+        else {
+            document.querySelector(`#phone .explain`).innerText = inputErrs.phone.content
+            document.querySelector(`#phone .explain`).style.visibility = 'visible'
+            isFieldsValid[3] = false
+        }
     }
 }
 function checkInn(input) {
-    if(input.target.value.length < 14) {
-        document.querySelector(`#inn .explain`).innerText = inputErrs.inn.content
+    if(input.value.length > 0) {
+        if(input.value.length < 14) {
+            document.querySelector(`#inn .explain`).classList.add("color_red")
+            document.querySelector(`#inn .explain`).innerText = inputErrs.inn.content
+            document.querySelector(`#inn .recipient__label-prompt`).innerText = 'ИНН для таможни'
+            isFieldsValid[4] = false
+        } else {
+            document.querySelector(`#inn .explain`).classList.remove("color_red")
+            document.querySelector(`#inn .explain`).innerText = 'Для таможенного оформления'
+            document.querySelector(`#inn .recipient__label-prompt`).innerText = 'ИНН'
+            isFieldsValid[4] = true
+        }
         document.querySelector(`#inn .explain`).style.visibility = 'visible'
-        document.querySelector(`#inn .explain`).classList.add("color_red")
     }
-    else document.querySelector(`#inn .explain`).style.visibility = 'hidden'
 }
 
 
@@ -330,9 +358,23 @@ function validName(input, field) {
         input.target.value = inputs[field]
     }
 }
+function validEmail(input) {
+    let isMatch = input.target.value.match(/^[\w-\.@]+$/i)
+    if(inputs.email.length == 1) {
+        inputs.email = input.target.value
+    } else if(!isMatch) {
+        input.target.value = inputs.email
+    } else {
+        inputs.email = isMatch.input
+    }
+}
 function validPhone(input) {
     // Только цифры
-    let isMatch = input.target.value.match(/^[\d-\+\s]+$/)
+    let isMatch = input.target.value.match(/^[\d\+\s]+$/)
+    if((!isMatch && inputs.phone.length == 1) || !isMatch) {
+        input.target.value = inputs.phone
+        return;
+    }
 
     // Del 
     if(isMatch.input.length < inputs.phone.length) {
@@ -355,11 +397,11 @@ function validPhone(input) {
         })
         inputs.phone = value
         input.target.value = inputs.phone
-        console.log(value)
-        // if(inputs.phone.length > isMatch.input.length) input.target.value = inputs.phone
-    }   //Запись в середину 
+    }
+    else if(input.target.value[0] != '+') {
+        input.target.value = '+'+input.target.value
+    }     //Запись в середину 
     else if(isMatch.input.indexOf(inputs.phone) == -1) {
-        console.log(isMatch.input.indexOf(inputs.phone))
         inputs.phone = input.target.value
     }   // посимвольная запись в конец 
     else {
