@@ -195,3 +195,200 @@ document.getElementById("collapseUnavailable").addEventListener("click", (el) =>
         el.target.style.transform = 'rotate(0deg)'
     }
 })
+
+
+const inputErrs = {
+    name: {empty: "Укажите имя"},
+    surname: {empty: "Укажите фамилию"},
+    email: {
+        empty: "Укажите электронную почту",
+        content: "Проверьте адрес электронной почты"
+    },
+    phone: {
+        empty: "Укажите номер телефона",
+        content: "Формат: +9 999 999 99 99"
+    },
+    inn: {
+        empty: "Укажите ИНН",
+        content: "Проверьте ИНН"
+    }
+}
+let isProcessed = false
+const fields = ["name", "surname", "email", "phone", "inn"]
+const inputs = {
+    name: '',
+    surname: '',
+    email: '',
+    phone: '',
+    inn: ''
+}
+
+document.getElementById("total__order").addEventListener("click", orderBtn => {
+    fields.forEach(field => {
+        let name = document.querySelector(`#${field} input`).value
+        if(!name || name.trim().length == 0) {
+            document.querySelector(`#${field} .explain`).innerText = inputErrs[field].empty
+            document.querySelector(`#${field} .explain`).style.display = 'inline'
+            document.querySelector(`#${field} .explain`).classList.add("color_red")
+        }
+        else if(field=="inn"&&name.trim().length < 14) {
+            document.querySelector(`#${field} .explain`).innerText = inputErrs[field].content
+            document.querySelector(`#${field} .explain`).style.display = 'inline'
+            document.querySelector(`#${field} .explain`).classList.add("color_red")
+        }
+        else if(field=="phone") {
+            console.log(field)
+            
+            let input = document.querySelector(`#${field} input`)
+
+            let isMatch = input.value.match(/^[\+]?\d\s\d{3}\s\d{3}\s\d{2}\s\d{2}$/)
+            console.log(isMatch)
+
+            if(!isMatch){
+                document.querySelector(`#${field} .explain`).innerText = inputErrs[field].content
+                document.querySelector(`#${field} .explain`).style.display = 'inline'
+                document.querySelector(`#${field} .explain`).classList.add("color_red")
+            }
+        }
+    });
+
+    if(!isProcessed) {
+        isProcessed = true
+        
+        fields.forEach(field => {
+            document.querySelector(`#${field} input`).addEventListener("input", input => {
+                checkEmpty(input, field)
+                
+                if(field=="phone") checkPhone(input)
+                else if(field=="inn") checkInn(input)
+                else if(field=="email") checkEmail(input)
+            })
+        })
+    }
+})
+
+fields.forEach(field => {
+    document.querySelector(`#${field} input`).addEventListener("input", input => {
+        if(field=="inn")
+            validInn(input)
+        else if(field=="email")
+            validEmail(input)
+        else if(field=="phone")
+            validPhone(input)
+        else if(field=="name" || field=="surname")
+            validName(input, field)
+    })
+})
+
+
+function checkEmpty(input, field) {
+    // console.log(fields.indexOf(field))
+    if(input.target.value.length > 0) document.querySelector(`#${field} .explain`).style.visibility = 'hidden'
+    else {
+        document.querySelector(`#${field} .explain`).innerText = inputErrs[field].empty
+        document.querySelector(`#${field} .explain`).style.visibility = 'visible'
+    }
+}
+function checkEmail(input) {
+    let isMatch = input.target.value.match(/^[\w]{1}[\w-\.]*@[\w-]+\.[a-z]{2,4}$/i)
+    console.log(isMatch)
+    console.log(input.target.value)
+    if(!isMatch) {
+        document.querySelector(`#email .explain`).innerText = inputErrs.email.content
+        document.querySelector(`#email .explain`).style.visibility = 'visible'
+        document.querySelector(`#email .explain`).classList.add("color_red")
+    } else {
+        inputs.email = isMatch.input
+    }
+}
+function checkPhone(input) {
+    let isMatch = input.target.value.match(/^[\+]?\d\s\d{3}\s\d{3}\s\d{2}\s\d{2}$/)
+    console.log(isMatch)
+    if(isMatch) document.querySelector(`#phone .explain`).style.visibility = 'hidden'
+    else {
+        document.querySelector(`#phone .explain`).innerText = inputErrs.phone.content
+        document.querySelector(`#phone .explain`).style.visibility = 'visible'
+    }
+}
+function checkInn(input) {
+    if(input.target.value.length < 14) {
+        document.querySelector(`#inn .explain`).innerText = inputErrs.inn.content
+        document.querySelector(`#inn .explain`).style.visibility = 'visible'
+        document.querySelector(`#inn .explain`).classList.add("color_red")
+    }
+    else document.querySelector(`#inn .explain`).style.visibility = 'hidden'
+}
+
+
+function validName(input, field) {
+    let isMatch = input.target.value.match(/^[A-Zа-я]+$/i)
+    if(isMatch) {
+        inputs[field] = isMatch.input
+    } else if((input.target.value < inputs[field]) && (inputs[field].length)) {
+        inputs[field] = input.target.value
+    } else {
+        input.target.value = inputs[field]
+    }
+}
+function validPhone(input) {
+    // Только цифры
+    let isMatch = input.target.value.match(/^[\d-\+\s]+$/)
+
+    // Del 
+    if(isMatch.input.length < inputs.phone.length) {
+        inputs.phone = isMatch.input
+    }   // maxLength
+    else if(inputs.phone.length == 16) {
+        input.target.value = inputs.phone
+    }   // копипаст - больше 1 символа 
+    else if(Math.abs(inputs.phone.length - isMatch.input.length) > 1) {
+        let value = input.target.value
+        if(input.target.value[0] != '+') {
+            value = '+'+input.target.value
+        } 
+        [2, 6, 10, 13].forEach(index => {
+            if(value.length > index) {
+                if(value[index] != ' ') {
+                    value = value.slice(0, index) + ' ' + value.slice(index)
+                }
+            }
+        })
+        inputs.phone = value
+        input.target.value = inputs.phone
+        console.log(value)
+        // if(inputs.phone.length > isMatch.input.length) input.target.value = inputs.phone
+    }   //Запись в середину 
+    else if(isMatch.input.indexOf(inputs.phone) == -1) {
+        console.log(isMatch.input.indexOf(inputs.phone))
+        inputs.phone = input.target.value
+    }   // посимвольная запись в конец 
+    else {
+        // 1st symb
+        if(inputs.phone.length == 0) {
+            inputs.phone = '+'+isMatch.input
+            input.target.value = inputs.phone
+        } 
+        else if(inputs.phone.length == 2 || inputs.phone.length == 6 ||
+                inputs.phone.length == 10|| inputs.phone.length == 13) {
+            inputs.phone = inputs.phone+' '+isMatch.input.slice(inputs.phone.length)
+            input.target.value = inputs.phone
+        } 
+        else {
+            inputs.phone = isMatch.input
+            input.target.value = inputs.phone
+        }
+    }
+}
+function validInn(input) {
+    // Только цифры
+    let isMatch = input.target.value.match(/^\d+$/)
+    if(isMatch && isMatch.input.length < 14) {
+        inputs.inn = isMatch.input
+    } else if (isMatch && isMatch.input.length == 14) {
+        inputs.inn = isMatch.input
+    } else if(inputs.inn.length == 1) {
+        inputs.inn = input.target.value
+    } else {
+        input.target.value = inputs.inn
+    }
+}

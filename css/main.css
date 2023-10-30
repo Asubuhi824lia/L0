@@ -447,7 +447,7 @@ header, .tabbar {height: 56px;}
     position: relative;
     bottom: 1px;
 }
-.total__order {
+#total__order {
     width: 100%;
     margin-top: 24px;
     padding: 7.5px 0 12.5px;
