@@ -176,7 +176,7 @@ header, .tabbar {height: 56px;}
     background-color: rgba(240, 236, 244, 1);
 }
 .checkbox [type=checkbox]:checked + span:before {/* <-- ставим иконку, когда чекбокс включен  */
-    content: url("/icons/get/item_checked.svg");
+    content: url("../icons/get/item_checked.svg");
     position: absolute;
     bottom: 6.52px;
     right: 4.26px;
@@ -443,7 +443,6 @@ header, .tabbar {height: 56px;}
     margin-top: 8px;
     display: flex;
     flex-direction: column;
-/*  */
     position: relative;
     bottom: 1px;
 }
