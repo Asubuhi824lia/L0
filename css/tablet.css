@@ -1,9 +1,7 @@
-@media (min-width: 320px) and (width < 1024px) {
-    body {
-        display: flex;
-        justify-content: center;
-    }
-    .wrapper, .main {
-        width: 100% !important;
-    }
+body {
+    display: flex;
+    justify-content: center;
+}
+.wrapper, .main {
+    width: 100% !important;
 }

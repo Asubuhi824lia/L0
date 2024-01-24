@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/fonts-style.css">
+    <link rel="stylesheet" media="screen and (width >= 1024px)" href="./css/large.css">
+    <link rel="stylesheet" media="screen and (min-width: 320px) and (max-width: 1024px)" href="./css//tablet.css">
     <script src="./js/index.js" defer></script>
 </head>
 
@@ -62,14 +65,14 @@
                                 </label>
                                 <span class="text_font">Выбрать все</span>
                                 <a class="list-visibility" id="collapseAvailable">
-                                    <img src="./icons/basket/to_collapse.svg" width="16px" height="9.6px">
+                                    <img src="./icons/basket/to_collapse.svg" width="16px" height="9.6px" class="transform_rotate_zero">
                                 </a>
                             </div>
-                            <section id="available__products-list">
-                                <div class="available__card card-1">
+                            <section id="available__products-list" class="display_b">
+                                <div class="available__card card">
                                     <div class="available__card-header">
                                         <div class="available__card-left">
-                                            <img src="./img/product1_preview.png" width="80px" height="106px">
+                                            <img src="./img/product1_preview.svg" width="80px" height="106px">
                                             <label class="checkbox caption_font">
                                                 <input class="available__card-checkbox" type="checkbox" name="">
                                                 <span></span>
@@ -81,15 +84,15 @@
                                                 <div class="available__card-price">
                                                     <div class="available__price-value">
                                                         <span class="subtitle-accent_font">522</span>
-                                                        <h4 class="subtitle-accent_font" style="margin-left: 5px;"> сом</h4>
+                                                        <h4 class="subtitle-accent_font available__price-currency"> сом</h4>
                                                     </div>
                                                     <span class="available__prev-cost caption_font color_gray">1051 сом</span>
                                                 </div>
                                                 <p class="available__card-name card-description_font">Футболка UZcotton мужская</p>
                                             </div>
                                             <p class="available__card-apps caption_font">
-                                                <span style="margin-right:16px;">Цвет: белый</span>
-                                                <span style="margin-right:16px;">Размер: 56</span>
+                                                <span class="caption_margin">Цвет: белый</span>
+                                                <span class="caption_margin">Размер: 56</span>
                                             </p>
                                             <p class="caption_font color_gray">Коледино WB</p>
                                             <p class="available__card-company caption_font color_gray">
@@ -101,7 +104,7 @@
                                     <div class="available__card-footer">
                                         <div class="amount">
                                             <div class="counter color_black counter_font main_bg-color-secondary">
-                                                <span class="counter__dec" style="color: rgba(0, 0, 0, 0.2)">−</span>
+                                                <span class="counter__dec counter_color-disabled">−</span>
                                                 <span class="counter__num card-description_font">1</span>
                                                 <span class="counter__inc">+</span>
                                             </div>
@@ -121,15 +124,15 @@
                                     <div class="available__card-price">
                                         <div class="available__price-value">
                                             <span class="litle-price_font">522</span>
-                                            <h4 class="subtitle-accent_font" style="margin-left: 2px;"> сом</h4>
+                                            <h4 class="subtitle-accent_font available__price-currency"> сом</h4>
                                         </div>
                                         <span class="available__prev-cost caption_font color_gray">1051 сом</span>
                                     </div>
                                 </div>
-                                <div class="available__card card-2">
+                                <div class="available__card card">
                                     <div class="available__card-header">
                                         <div class="available__card-left">
-                                            <img src="./img/product2_preview.png" width="80px" height="106px">
+                                            <img src="./img/product2_preview.svg" width="80px" height="106px">
                                             <label class="checkbox caption_font">
                                                 <input class="available__card-checkbox" type="checkbox" name="">
                                                 <span></span>
@@ -141,14 +144,14 @@
                                                 <div class="available__card-price">
                                                     <div class="available__price-value">
                                                         <span class="subtitle-accent_font">2 100 047</span>
-                                                        <h4 class="subtitle-accent_font" style="margin-left: 5px;"> сом</h4>
+                                                        <h4 class="subtitle-accent_font available__price-currency"> сом</h4>
                                                     </div>
                                                     <span class="available__prev-cost caption_font color_gray">2 300 047 сом</span>
                                                 </div>
                                                 <p class="available__card-name card-description_font"></p>
                                             </div>
                                             <p class="available__card-apps caption_font">
-                                                <span style="margin-right:16px;">Цвет: прозрачный</span>
+                                                <span class="caption_margin">Цвет: прозрачный</span>
                                             </p>
                                             <p class="caption_font color_gray">Коледино WB</p>
                                             <p class="available__card-company caption_font color_gray">
@@ -177,15 +180,15 @@
                                     <div class="available__card-price">
                                         <div class="available__price-value">
                                             <span class="subtitle-accent_font">2 100 047</span>
-                                            <h4 class="subtitle-accent_font" style="margin-left: 2px;"> сом</h4>
+                                            <h4 class="subtitle-accent_font available__price-currency"> сом</h4>
                                         </div>
                                         <span class="available__prev-cost caption_font color_gray">2 300 047 сом</span>
                                     </div>
                                 </div>
-                                <div class="available__card card-3">
+                                <div class="available__card card">
                                     <div class="available__card-header">
                                         <div class="available__card-left">
-                                            <img src="./img/product3_preview.png" width="80px" height="106px">
+                                            <img src="./img/product3_preview.svg" width="80px" height="106px">
                                             <label class="checkbox caption_font">
                                                 <input class="available__card-checkbox" type="checkbox" name="">
                                                 <span></span>
@@ -197,7 +200,7 @@
                                                 <div class="available__card-price">
                                                     <div class="available__price-value">
                                                         <span class="subtitle-accent_font">494</span>
-                                                        <h4 class="subtitle-accent_font" style="margin-left: 5px;"> сом</h4>
+                                                        <h4 class="subtitle-accent_font available__price-currency"> сом</h4>
                                                     </div>
                                                     <span class="available__prev-cost caption_font color_gray">950 сом</span>
                                                 </div>
@@ -213,7 +216,7 @@
                                             <div class="counter color_black counter_font main_bg-color-secondary">
                                                 <span class="counter__dec">−</span>
                                                 <span class="counter__num card-description_font">2</span>
-                                                <span class="counter__inc" style="color: rgba(0, 0, 0, 0.2)">+</span>
+                                                <span class="counter__inc counter_color-disabled">+</span>
                                             </div>
                                             <div class="available__card-amount">
                                                 <span class="left-amount caption_font color_red">Осталось 2 шт.</span>
@@ -229,9 +232,11 @@
                                         </div>
                                     </div>
                                     <div class="available__card-price">
-                                        <div class="available__price-value"><span class="litle-price_font">494</span>
-                                            <h4 class="subtitle-accent_font" style="margin-left: 2px;"> сом</h4>
-                                        </div><span class="available__prev-cost caption_font color_gray">950 сом</span>
+                                        <div class="available__price-value">
+                                            <span class="litle-price_font">494</span>
+                                            <h4 class="subtitle-accent_font available__price-currency"> сом</h4>
+                                        </div>
+                                        <span class="available__prev-cost caption_font color_gray">950 сом</span>
                                     </div>
                                 </div>
                             </section>
@@ -240,21 +245,21 @@
                             <div class="unavailable-header">
                                 <h4 class="subtitle_font">Отсутствуют · 3 товара</h4>
                                 <a class="list-visibility" id="collapseUnavailable">
-                                    <img src="./icons/basket/to_collapse.svg" width="16px" height="9.6px">
+                                    <img src="./icons/basket/to_collapse.svg" width="16px" height="9.6px" class="transform_rotate_zero">
                                 </a>
                             </div>
-                            <section id="unavailable__products-list">
-                                <div class="unavailable__card card-1">
+                            <section id="unavailable__products-list" class="display_b">
+                                <div class="unavailable__card card">
                                     <div class="unavailable__card-header">
                                         <div class="unavailable__card-left">
-                                            <img src="./img/product1_monochrome.png" width="80px" height="106px">
+                                            <img src="./img/product1_monochrome.svg" width="80px" height="106px">
                                             <span class="size main_bg-color-secondary card-description_font">56</span>
                                         </div>
                                         <div class="unavailable__card-right color_gray">
                                             <p class="unavailable__card-name card-description_font">Футболка UZcotton мужская</p>
                                             <p class="caption_font">
-                                                <span style="margin-right:16px;">Цвет: белый</span>
-                                                <span style="margin-right:16px;">Размер: 56</span>
+                                                <span class="caption_margin">Цвет: белый</span>
+                                                <span class="caption_margin">Размер: 56</span>
                                             </p>
                                         </div>
                                     </div>
@@ -269,16 +274,16 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="unavailable__card card-2">
+                                <div class="unavailable__card card">
                                     <div class="unavailable__card-header">
                                         <div class="unavailable__card-left">
-                                            <img src="./img/product2_monochrome.png" width="80px" height="106px">
+                                            <img src="./img/product2_monochrome.svg" width="80px" height="106px">
                                             <span class="size main_bg-color-secondary card-description_font"></span>
                                         </div>
                                         <div class="unavailable__card-right color_gray">
                                             <p class="unavailable__card-name card-description_font"></p>
                                             <p class="caption_font">
-                                                <span style="margin-right:16px;">Цвет: прозрачный</span>
+                                                <span class="caption_margin">Цвет: прозрачный</span>
                                             </p>
                                         </div>
                                     </div>
@@ -293,10 +298,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="unavailable__card card-3">
+                                <div class="unavailable__card card">
                                     <div class="unavailable__card-header">
                                         <div class="unavailable__card-left">
-                                            <img src="./img/product3_monochrome.png" width="80px" height="106px">
+                                            <img src="./img/product3_monochrome.svg" width="80px" height="106px">
                                             <span class="size main_bg-color-secondary card-description_font">56/54/52...</span>
                                         </div>
                                         <div class="unavailable__card-right color_gray">
@@ -347,15 +352,15 @@
                                 <h3 class="subtitle_font color_black">5—6 февраля</h3>
                                 <div class="frame__items">
                                     <div class="frame__item">
-                                        <img src="./img/product1_preview.png" width="40.93px" height="56px">
+                                        <img src="./img/product1_preview.svg" width="40.93px" height="56px">
                                     </div>
                                     <div class="frame__item">
-                                        <img src="./img/product2_preview.png" width="40.93px" height="56px">
-                                        <div class="cart-num color_white card-num_font" style="position: absolute; top: -8.3px; right: -3px; padding: 0 5px;">184</div>
+                                        <img src="./img/product2_preview.svg" width="40.93px" height="56px">
+                                        <div class="cart-num color_white card-num_font frame__item-num-ternary">184</div>
                                     </div>
                                     <div class="frame__item">
-                                        <img src="./img/product3_preview.png" width="40.93px" height="56px">
-                                        <div class="cart-num color_white card-num_font" style="position: absolute; top: -8.3px; right: -2px; padding: 0 2px;">2</div>
+                                        <img src="./img/product3_preview.svg" width="40.93px" height="56px">
+                                        <div class="cart-num color_white card-num_font frame__item-num-singular">2</div>
                                     </div>
                                 </div>
                             </div>
@@ -363,8 +368,8 @@
                                 <h3 class="subtitle_font color_black">7—8 февраля</h3>
                                 <div class="frame__items">
                                     <div class="frame__item">
-                                        <img src="./img/product2_preview.png" width="40.93px" height="56px">
-                                        <div class="cart-num color_white card-num_font" style="position: absolute; top: -5.3px; right: -3px; padding: 0 5px;">16</div>
+                                        <img src="./img/product2_preview.svg" width="40.93px" height="56px">
+                                        <div class="cart-num color_white card-num_font frame__item-num-binary">16</div>
                                     </div>
                                 </div>
                             </div>
@@ -432,7 +437,7 @@
             </section>
             <section class="total">
                 <div class="total__price">
-                    <h3 class="total__price-total get__title_font"><span>Итого</span><span>2 101 063 сом</span></h3>
+                    <h3 class="total__price-total get__title_font"><span>Итого</span><span>2 101 063<span class="basket__currency_font"> сом</span></span></h3>
                     <article class="total__price-points">
                         <p class="total__price-point text_font"><span>203 товара</span><span>2 302 048 сом</span></p>
                         <p class="total__price-point text_font"><span>Скидка</span><span>−200 985 сом</span></p>
@@ -445,7 +450,7 @@
                         <img class="edit-btn" src="./icons/get/edit.svg" width="16px" height="16px">
                     </div>
                     <p class="caption_font">Бишкек, улица Ахматбека Суюмбаева, 12/1</p>
-                    <span class="caption_font color_pink" style="border-bottom: 1px dashed rgba(203, 17, 171, .2);">5–8 фев</span>
+                    <span class="total__delivery-period caption_font color_pink">5–8 фев</span>
                 </div>
                 <div class="total__bonus bg-color_smoky-dark">
                     <div class="bonus caption_font color_black">
@@ -486,17 +491,17 @@
             <p class="caption_font footer__caption-text">© 2022  ООО «Товары и точка»</p>
         </footer>
         <section class="tabbar main_bg-color-secondary">
-            <a class="tab"><img src="./icons/tabbar/main.svg" width="28px" height="28px"></a>
-            <a class="tab"><img src="./icons/tabbar/catalog.svg" width="28px" height="28px"></a>
+            <a class="tab"><img src="./icons/tabbar/main.svg"></a>
+            <a class="tab"><img src="./icons/tabbar/catalog.svg"></a>
             <a class="tab tab-cart">
-                <img src="./icons/tabbar/cart-sel.svg" width="28px" height="28px">
+                <img src="./icons/tabbar/cart-sel.svg">
                 <div class="cart-num color_white tab-cart__num tabbar__card-num_font">3</div>
             </a>
             <a class="tab tab-cart">
-                <img src="./icons/tabbar/favorites.svg" width="28px" height="28px">
-                <div class="cart-num color_white tab-favorites__num tabbar__card-num_font" style="display: none;">0</div>
+                <img src="./icons/tabbar/favorites.svg">
+                <div class="cart-num color_white tab-favorites__num tabbar__card-num_font display_n">0</div>
             </a>
-            <a class="tab"><img src="./icons/tabbar/profile.svg" width="28px" height="28px"></a>
+            <a class="tab"><img src="./icons/tabbar/profile.svg"></a>
         </section>
     </div>
 </body>
