@@ -9,10 +9,111 @@
     <link rel="stylesheet" href="./css/fonts-style.css">
     <link rel="stylesheet" media="screen and (width >= 1024px)" href="./css/large.css">
     <link rel="stylesheet" media="screen and (min-width: 320px) and (max-width: 1024px)" href="./css//tablet.css">
-    <script src="./js/index.js" defer></script>
+    <script src="./js/card.js"></script>
+    <script src="./js/inputs.js" defer></script>
+    <script src="./js/load.js"   defer></script>
+    <script src="./js/index.js"  type="module" defer></script>
 </head>
 
-<body class="text_font color_black">
+<body class="text_font color_black" onresize="onResize()">
+    <template id="sizeTemp">
+        <span class="size main_bg-color-secondary card-description_font"><!-- size --></span>
+    </template>
+    <template id="paramTemp">
+        <span class="caption_margin"><!-- Addition param --></span>
+    </template>
+    <template id="available__cardTemp">
+        <div class="available__card card">
+            <div class="available__card-header">
+                <div class="available__card-left">
+                    <img src="" width="80px" height="106px">
+                    <label class="checkbox caption_font">
+                        <input class="available__card-checkbox" type="checkbox" name="">
+                        <span></span>
+                    </label>
+                    <!-- size num -->
+                </div>
+                <div class="available__card-right">
+                    <div class="available__card-main">
+                        <div class="available__card-price">
+                            <div class="available__price-value">
+                                <span class="subtitle-accent_font"><!-- 522 --></span>
+                                <h4 class="subtitle-accent_font available__price-currency"><!--  сом --></h4>
+                            </div>
+                            <span class="available__prev-cost caption_font color_gray"><!-- 1051 сом --></span>
+                        </div>
+                        <p class="available__card-name card-description_font"><!-- Футболка UZcotton мужская --></p>
+                    </div>
+                    <p class="available__card-apps caption_font">
+                        <span class="caption_margin"><!-- Цвет: белый --></span>
+                        <span class="caption_margin"><!-- Размер: 56 --></span>
+                    </p>
+                    <p class="available__card-location caption_font color_gray"><!-- Коледино WB --></p>
+                    <p class="available__card-company caption_font color_gray">
+                        <span><!-- OOO Вайлдберриз --></span>
+                        <img src="./icons/basket/info.svg" width="16px" height="16px">
+                    </p>
+                </div>
+            </div>
+            <div class="available__card-footer">
+                <div class="amount">
+                    <div class="counter color_black counter_font main_bg-color-secondary">
+                        <span class="counter__dec">−</span>
+                        <span class="counter__num card-description_font"><!-- 1 --></span>
+                        <span class="counter__inc">+</span>
+                    </div>
+                    <div class="available__card-amount">
+                        <span class="left-amount caption_font color_red"><!-- Осталось 2 шт. --></span>
+                    </div>
+                </div>
+                <div class="actions">
+                    <button class="actions__to-like">
+                        <img src="./icons/basket/to_like.svg">
+                    </button>
+                    <button class="actions__to-basket">
+                        <img src="./icons/basket/to_basket.svg">
+                    </button>
+                </div>
+            </div>
+            <div class="available__card-price">
+                <div class="available__price-value">
+                    <span class="litle-price_font"><!-- 522 --></span>
+                    <h4 class="subtitle-accent_font available__price-currency"><!-- сом --></h4>
+                </div>
+                <span class="available__prev-cost caption_font color_gray"><!-- 1051 сом --></span>
+            </div>
+        </div>
+    </template>
+
+    <template id="unavailable__cardTemp">
+        <div class="unavailable__card card">
+            <div class="unavailable__card-header">
+                <div class="unavailable__card-left">
+                    <img src="" width="80px" height="106px">
+                    <span class="size main_bg-color-secondary card-description_font"><!-- 56 --></span>
+                </div>
+                <div class="unavailable__card-right color_gray">
+                    <p class="unavailable__card-name card-description_font"><!-- Футболка UZcotton мужская --></p>
+                    <p class="unavailable__card-apps caption_font">
+                        <span class="caption_margin"><!-- Цвет: белый --></span>
+                        <span class="caption_margin"><!-- Размер: 56 --></span>
+                    </p>
+                </div>
+            </div>
+            <div class="unavailable__card-footer">
+                <div class="actions">
+                    <button class="actions__to-like">
+                        <img src="./icons/basket/to_like.svg" width="20px" height="20px">
+                    </button>
+                    <button class="actions__to-basket">
+                        <img src="./icons/basket/to_basket.svg" width="20px" height="20px">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+
     <div class="wrapper wrapper_bg-color">
         <header class="header color_white">
             <div class="header__mobile">
@@ -69,176 +170,6 @@
                                 </a>
                             </div>
                             <section id="available__products-list" class="display_b">
-                                <div class="available__card card">
-                                    <div class="available__card-header">
-                                        <div class="available__card-left">
-                                            <img src="./img/product1_preview.svg" width="80px" height="106px">
-                                            <label class="checkbox caption_font">
-                                                <input class="available__card-checkbox" type="checkbox" name="">
-                                                <span></span>
-                                            </label>
-                                            <span class="size main_bg-color-secondary card-description_font">56</span>
-                                        </div>
-                                        <div class="available__card-right">
-                                            <div class="available__card-main">
-                                                <div class="available__card-price">
-                                                    <div class="available__price-value">
-                                                        <span class="subtitle-accent_font">522</span>
-                                                        <h4 class="subtitle-accent_font available__price-currency"> сом</h4>
-                                                    </div>
-                                                    <span class="available__prev-cost caption_font color_gray">1051 сом</span>
-                                                </div>
-                                                <p class="available__card-name card-description_font">Футболка UZcotton мужская</p>
-                                            </div>
-                                            <p class="available__card-apps caption_font">
-                                                <span class="caption_margin">Цвет: белый</span>
-                                                <span class="caption_margin">Размер: 56</span>
-                                            </p>
-                                            <p class="caption_font color_gray">Коледино WB</p>
-                                            <p class="available__card-company caption_font color_gray">
-                                                <span>OOO Вайлдберриз</span>
-                                                <img src="./icons/basket/info.svg" width="16px" height="16px">
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="available__card-footer">
-                                        <div class="amount">
-                                            <div class="counter color_black counter_font main_bg-color-secondary">
-                                                <span class="counter__dec counter_color-disabled">−</span>
-                                                <span class="counter__num card-description_font">1</span>
-                                                <span class="counter__inc">+</span>
-                                            </div>
-                                            <div class="available__card-amount">
-                                                <span class="left-amount caption_font color_red">Осталось 2 шт.</span>
-                                            </div>
-                                        </div>
-                                        <div class="actions">
-                                            <button class="actions__to-like">
-                                                <img src="./icons/basket/to_like.svg" width="20px" height="20px">
-                                            </button>
-                                            <button class="actions__to-basket">
-                                                <img src="./icons/basket/to_basket.svg" width="20px" height="20px">
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="available__card-price">
-                                        <div class="available__price-value">
-                                            <span class="litle-price_font">522</span>
-                                            <h4 class="subtitle-accent_font available__price-currency"> сом</h4>
-                                        </div>
-                                        <span class="available__prev-cost caption_font color_gray">1051 сом</span>
-                                    </div>
-                                </div>
-                                <div class="available__card card">
-                                    <div class="available__card-header">
-                                        <div class="available__card-left">
-                                            <img src="./img/product2_preview.svg" width="80px" height="106px">
-                                            <label class="checkbox caption_font">
-                                                <input class="available__card-checkbox" type="checkbox" name="">
-                                                <span></span>
-                                            </label>
-                                            <span class="size main_bg-color-secondary card-description_font"></span>
-                                        </div>
-                                        <div class="available__card-right">
-                                            <div class="available__card-main">
-                                                <div class="available__card-price">
-                                                    <div class="available__price-value">
-                                                        <span class="subtitle-accent_font">2 100 047</span>
-                                                        <h4 class="subtitle-accent_font available__price-currency"> сом</h4>
-                                                    </div>
-                                                    <span class="available__prev-cost caption_font color_gray">2 300 047 сом</span>
-                                                </div>
-                                                <p class="available__card-name card-description_font"></p>
-                                            </div>
-                                            <p class="available__card-apps caption_font">
-                                                <span class="caption_margin">Цвет: прозрачный</span>
-                                            </p>
-                                            <p class="caption_font color_gray">Коледино WB</p>
-                                            <p class="available__card-company caption_font color_gray">
-                                                <span>OOO Мегапрофстиль</span>
-                                                <img src="./icons/basket/info.svg" width="16px" height="16px">
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="available__card-footer">
-                                        <div class="amount">
-                                            <div class="counter color_black counter_font main_bg-color-secondary">
-                                                <span class="counter__dec">−</span>
-                                                <span class="counter__num card-description_font">200</span>
-                                                <span class="counter__inc">+</span>
-                                            </div>
-                                        </div>
-                                        <div class="actions">
-                                            <button class="actions__to-like">
-                                                <img src="./icons/basket/to_like.svg" width="20px" height="20px">
-                                            </button>
-                                            <button class="actions__to-basket">
-                                                <img src="./icons/basket/to_basket.svg" width="20px" height="20px">
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="available__card-price">
-                                        <div class="available__price-value">
-                                            <span class="subtitle-accent_font">2 100 047</span>
-                                            <h4 class="subtitle-accent_font available__price-currency"> сом</h4>
-                                        </div>
-                                        <span class="available__prev-cost caption_font color_gray">2 300 047 сом</span>
-                                    </div>
-                                </div>
-                                <div class="available__card card">
-                                    <div class="available__card-header">
-                                        <div class="available__card-left">
-                                            <img src="./img/product3_preview.svg" width="80px" height="106px">
-                                            <label class="checkbox caption_font">
-                                                <input class="available__card-checkbox" type="checkbox" name="">
-                                                <span></span>
-                                            </label>
-                                            <span class="size main_bg-color-secondary card-description_font"></span>
-                                        </div>
-                                        <div class="available__card-right">
-                                            <div class="available__card-main">
-                                                <div class="available__card-price">
-                                                    <div class="available__price-value">
-                                                        <span class="subtitle-accent_font">494</span>
-                                                        <h4 class="subtitle-accent_font available__price-currency"> сом</h4>
-                                                    </div>
-                                                    <span class="available__prev-cost caption_font color_gray">950 сом</span>
-                                                </div>
-                                                <p class="available__card-name card-description_font"></p>
-                                            </div>
-                                            <p class="caption_font color_gray">Коледино WB</p>
-                                            <p class="available__card-company caption_font color_gray"><span>OOO Вайлдберриз</span>
-                                            <img src="./icons/basket/info.svg" width="16px" height="16px"></p>
-                                        </div>
-                                    </div>
-                                    <div class="available__card-footer">
-                                        <div class="amount">
-                                            <div class="counter color_black counter_font main_bg-color-secondary">
-                                                <span class="counter__dec">−</span>
-                                                <span class="counter__num card-description_font">2</span>
-                                                <span class="counter__inc counter_color-disabled">+</span>
-                                            </div>
-                                            <div class="available__card-amount">
-                                                <span class="left-amount caption_font color_red">Осталось 2 шт.</span>
-                                            </div>
-                                        </div>
-                                        <div class="actions">
-                                            <button class="actions__to-like">
-                                                <img src="./icons/basket/to_like.svg" width="20px" height="20px">
-                                            </button>
-                                            <button class="actions__to-basket">
-                                                <img src="./icons/basket/to_basket.svg" width="20px" height="20px">
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="available__card-price">
-                                        <div class="available__price-value">
-                                            <span class="litle-price_font">494</span>
-                                            <h4 class="subtitle-accent_font available__price-currency"> сом</h4>
-                                        </div>
-                                        <span class="available__prev-cost caption_font color_gray">950 сом</span>
-                                    </div>
-                                </div>
                             </section>
                         </section>
                         <section class="unavailable">
@@ -249,77 +180,6 @@
                                 </a>
                             </div>
                             <section id="unavailable__products-list" class="display_b">
-                                <div class="unavailable__card card">
-                                    <div class="unavailable__card-header">
-                                        <div class="unavailable__card-left">
-                                            <img src="./img/product1_monochrome.svg" width="80px" height="106px">
-                                            <span class="size main_bg-color-secondary card-description_font">56</span>
-                                        </div>
-                                        <div class="unavailable__card-right color_gray">
-                                            <p class="unavailable__card-name card-description_font">Футболка UZcotton мужская</p>
-                                            <p class="caption_font">
-                                                <span class="caption_margin">Цвет: белый</span>
-                                                <span class="caption_margin">Размер: 56</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="unavailable__card-footer">
-                                        <div class="actions">
-                                            <button class="actions__to-like">
-                                                <img src="./icons/basket/to_like.svg" width="20px" height="20px">
-                                            </button>
-                                            <button class="actions__to-basket">
-                                                <img src="./icons/basket/to_basket.svg" width="20px" height="20px">
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="unavailable__card card">
-                                    <div class="unavailable__card-header">
-                                        <div class="unavailable__card-left">
-                                            <img src="./img/product2_monochrome.svg" width="80px" height="106px">
-                                            <span class="size main_bg-color-secondary card-description_font"></span>
-                                        </div>
-                                        <div class="unavailable__card-right color_gray">
-                                            <p class="unavailable__card-name card-description_font"></p>
-                                            <p class="caption_font">
-                                                <span class="caption_margin">Цвет: прозрачный</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="unavailable__card-footer">
-                                        <div class="actions">
-                                            <button class="actions__to-like">
-                                                <img src="./icons/basket/to_like.svg" width="20px" height="20px">
-                                            </button>
-                                            <button class="actions__to-basket">
-                                                <img src="./icons/basket/to_basket.svg" width="20px" height="20px">
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="unavailable__card card">
-                                    <div class="unavailable__card-header">
-                                        <div class="unavailable__card-left">
-                                            <img src="./img/product3_monochrome.svg" width="80px" height="106px">
-                                            <span class="size main_bg-color-secondary card-description_font">56/54/52...</span>
-                                        </div>
-                                        <div class="unavailable__card-right color_gray">
-                                            <p class="unavailable__card-name card-description_font"></p>
-                                            <p class="caption_font"></p>
-                                        </div>
-                                    </div>
-                                    <div class="unavailable__card-footer">
-                                        <div class="actions">
-                                            <button class="actions__to-like">
-                                                <img src="./icons/basket/to_like.svg" width="20px" height="20px">
-                                            </button>
-                                            <button class="actions__to-basket">
-                                                <img src="./icons/basket/to_basket.svg" width="20px" height="20px">
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
                             </section>
                         </section>
                     </section>
@@ -504,6 +364,59 @@
             <a class="tab"><img src="./icons/tabbar/profile.svg"></a>
         </section>
     </div>
+
+
+
+    <script>
+        let card_names = [];
+        function onResize() 
+        {
+            if(window.innerWidth >= 1024) {
+                document.querySelectorAll(".unavailable__card-name").forEach(element => {
+                    element.classList.remove("card-description_font")
+                    element.classList.add("text_font")
+                });
+            
+                document.querySelectorAll(".size").forEach(el => {el.classList.add("visibility_h");el.classList.remove("visibility_v")})
+
+                document.querySelectorAll(".total__bonus, .write-off-way").forEach(element => {
+                    element.classList.remove("bg-color_smoky-dark")
+                    element.classList.add("main_bg-color-primary")
+                })
+
+                let available__card   = document.querySelectorAll(".available__card-name")
+                let unavailable__card = document.querySelectorAll(".unavailable__card-name")
+                card_names.forEach((card, index) => {
+                    if(available__card[index].innerText == card.full) return;
+                    else {
+                        available__card[index].innerText = card.full;
+                        unavailable__card[index].innerText = card.full;
+                    }
+                })
+            } else {
+                document.querySelectorAll(".unavailable__card-name").forEach(element => {
+                    element.classList.remove("text_font")
+                    element.classList.add("card-description_font")
+                });
+            
+                document.querySelectorAll(".size").forEach(el => {el.classList.remove("visibility_h");el.classList.add("visibility_v")})
+
+                document.querySelectorAll(".total__bonus, .write-off-way").forEach(element => {
+                    element.classList.add("bg-color_smoky-dark")
+                    element.classList.remove("main_bg-color-primary")
+                })
+
+                let available__card = document.querySelectorAll(".available__card-name")
+                let unavailable__card = document.querySelectorAll(".unavailable__card-name")
+                card_names.forEach((card, index) => {
+                    if(card.short) {
+                        available__card[index].innerText   = card.short+"..."
+                        unavailable__card[index].innerText = card.short+"..."
+                    }
+                })
+            }
+        }
+    </script>
 </body>
 
 </html>
