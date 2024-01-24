@@ -60,6 +60,13 @@ function addToggleFavoriteCardListener()
     cardElems.forEach(elem => {
         const likeBtn = elem.querySelector(".actions__to-like")
         likeBtn.addEventListener("click", () => likeCard(elem))
+
+        likeBtn.addEventListener("mouseover", () => {
+            likeBtn.querySelector("img").attributes.src.value = "./icons/basket/to_like_hover.svg"
+        })
+        likeBtn.addEventListener("mouseout", () => {
+            likeBtn.querySelector("img").attributes.src.value = "./icons/basket/to_like.svg"
+        })
     })
 }
 function likeCard(card) {
