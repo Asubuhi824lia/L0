@@ -4,6 +4,18 @@ fetch('../json/data.json')
     })
     .then(function (data) {
         console.log(data);
+
+        // поместить в localStorage динамические параметры товаров
+        localStorage.setItem("L0_itemsQuantity", JSON.stringify(
+            {cards: data.cards.map(card => ({
+                id: card.id, 
+                quantity: card.quantity, 
+                item_price: card.cost, 
+                total_price: card.cost.replace(" ", '') * card.quantity
+            }))}
+        ))
+
+        // сформировать и вывести карточки товаров
         data.cards.forEach(card => {
             document.querySelector("#available__products-list").appendChild(createAvailableCard(card))
             document.querySelector("#unavailable__products-list").appendChild(createUnavailableCard(card))
@@ -27,7 +39,7 @@ function createAvailableCard(objCard) {
     template.querySelector(".available__card-left").append(sizeTemp)
 
     template.querySelectorAll(".available__price-value span").forEach(span => {
-        span.textContent = countCost(objCard.cost, objCard.quantity)
+        span.textContent = countItemTotalPrice(objCard.cost, objCard.quantity)
         if(objCard.cost.length > 7) {
             span.classList.add("subtitle-accent_font")
             span.classList.remove("litle-price_font")
@@ -37,7 +49,7 @@ function createAvailableCard(objCard) {
         h.textContent = objCard.cy
     })
     template.querySelectorAll(".available__prev-cost").forEach(span => {
-        span.textContent = countCost(objCard.prev_cost, objCard.quantity) + objCard.cy
+        span.textContent = countItemTotalPrice(objCard.prev_cost, objCard.quantity) + objCard.cy
     })
 
     template.querySelector(".available__card-name").textContent = objCard.name.full
@@ -84,9 +96,9 @@ function createUnavailableCard(objCard) {
     return template;
 }
 
-function countCost(itemCost, quantity) {
-    let cost = String(itemCost.split(" ").join('') * quantity)
-    const fraction = cost.split('.')[1]
+function countItemTotalPrice(itemCost, quantity) {
+    let cost = (typeof itemCost == "number") ? String(itemCost) : String(itemCost.split(" ").join('') * quantity)
+    const fraction = cost.includes('.') ? '.'+Number(cost).toFixed(2).split('.')[1] : null;
     cost = Array.from(cost.split('.')[0])
                 .reverse().map((num, ind) => ((ind+1) % 3 == 0) ? ` ${num}` : num)
                 .reverse().join('')

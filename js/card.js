@@ -3,10 +3,10 @@ function addIncItemListener(cards)
     cards.forEach((item,ind) => {
         let cardElem = document.querySelectorAll(`.available__card.card`)[ind]
         let incBtn = cardElem.getElementsByClassName("counter__inc")[0]
-        incBtn.addEventListener("click", () => incItem(cardElem, item.left))
+        incBtn.addEventListener("click", () => incItem(cardElem, item.left, ind))
     })
 }
-function incItem(card, left) {
+function incItem(card, left, ind) {
     let num = card.querySelector(".counter__num")
     const curNum = Number(num.innerText)
 
@@ -23,6 +23,35 @@ function incItem(card, left) {
         card.querySelector(".counter__dec").classList.add("color_black")
     }
     num.innerText = curNum+1
+    incPrice(ind)
+}
+function incPrice(id) {
+    let items = JSON.parse(localStorage.getItem("L0_itemsQuantity"))
+    items.cards = items.cards.map(card => {if(card.id == id) {
+            card.quantity += 1;
+            card.total_price = card.item_price.replace(" ", '') * card.quantity;
+        }; return card;
+    })
+    localStorage.setItem("L0_itemsQuantity", JSON.stringify(items))
+    changeTotalPrice(id, items)
+}
+function decPrice(id) {
+    let items = JSON.parse(localStorage.getItem("L0_itemsQuantity"))
+    items.cards = items.cards.map(card => {if(card.id == id) {
+            card.quantity -= 1;
+            card.total_price = card.item_price.replace(" ", '') * card.quantity;
+        }; return card;
+    })
+    localStorage.setItem("L0_itemsQuantity", JSON.stringify(items))
+    changeTotalPrice(id, items)
+}
+function changeTotalPrice(id, items) {
+    const item_total = countItemTotalPrice(items.cards[id].total_price, items.cards[id].quantity)
+    document.querySelectorAll('.available__card')[id]
+            .querySelectorAll(".available__price-value span").forEach(elem => elem.textContent = item_total)
+
+    const total = items.cards.map(card => card.total_price).reduce((count, price)=> count + price)
+    document.querySelector(".total__price-total span span").textContent = countItemTotalPrice(total, 1)
 }
 
 
@@ -31,18 +60,21 @@ function addDecItemListener(cards)
     cards.forEach((item,ind) => {
         let cardElem = document.querySelectorAll(`.available__card.card`)[ind]
         let decBtn = cardElem.querySelector(".counter__dec")
-        decBtn.addEventListener("click", () => decItem(cardElem, item.left))
+        decBtn.addEventListener("click", () => decItem(cardElem, item.left, ind))
     })
 }
-function decItem(card, left) {
+function decItem(card, left, ind) {
     let num = card.querySelector(".counter__num")
     const curNum = Number(num.innerText)
 
     card.querySelector(".left-amount").classList.remove("color_orange")
     card.querySelector(".left-amount").classList.add("color_red")
 
-    if(curNum == 1) return;
-    if(curNum > 1 && curNum <= left) num.innerText = curNum-1
+    if(curNum-1 == 0) return;
+    if(curNum > 1 && curNum <= left) {
+        num.innerText = curNum-1
+        decPrice(ind)
+    }
     if(curNum == left) {
         card.querySelector(".counter__inc").classList.add("color_black")
         card.querySelector(".counter__inc").classList.remove("counter_color-disabled")
