@@ -11,6 +11,7 @@ fetch('../json/data.json')
                 id: card.id, 
                 quantity: card.quantity, 
                 item_price: card.cost, 
+                prev_item_price: card.prev_cost,
                 total_price: card.cost.replace(" ", '') * card.quantity
             }))}
         ))
@@ -49,7 +50,8 @@ function createAvailableCard(objCard) {
         h.textContent = objCard.cy
     })
     template.querySelectorAll(".available__prev-cost").forEach(span => {
-        span.textContent = countItemTotalPrice(objCard.prev_cost, objCard.quantity) + objCard.cy
+        span.getElementsByClassName("available__prev-cost-tag")[0].textContent = countItemTotalPrice(objCard.prev_cost, objCard.quantity)
+        span.getElementsByClassName("available__prev-cost-cy")[0].textContent = objCard.cy
     })
 
     template.querySelector(".available__card-name").textContent = objCard.name.full
@@ -76,7 +78,6 @@ function createAvailableCard(objCard) {
 
     template.querySelector(".actions__to-basket img").setAttribute("width", "20px")
     template.querySelector(".actions__to-basket img").setAttribute("height", "20px")
-
 
     return template;
 }

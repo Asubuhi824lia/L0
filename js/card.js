@@ -34,24 +34,7 @@ function incPrice(id) {
     })
     localStorage.setItem("L0_itemsQuantity", JSON.stringify(items))
     changeTotalPrice(id, items)
-}
-function decPrice(id) {
-    let items = JSON.parse(localStorage.getItem("L0_itemsQuantity"))
-    items.cards = items.cards.map(card => {if(card.id == id) {
-            card.quantity -= 1;
-            card.total_price = card.item_price.replace(" ", '') * card.quantity;
-        }; return card;
-    })
-    localStorage.setItem("L0_itemsQuantity", JSON.stringify(items))
-    changeTotalPrice(id, items)
-}
-function changeTotalPrice(id, items) {
-    const item_total = countItemTotalPrice(items.cards[id].total_price, items.cards[id].quantity)
-    document.querySelectorAll('.available__card')[id]
-            .querySelectorAll(".available__price-value span").forEach(elem => elem.textContent = item_total)
-
-    const total = items.cards.map(card => card.total_price).reduce((count, price)=> count + price)
-    document.querySelector(".total__price-total span span").textContent = countItemTotalPrice(total, 1)
+    changeTotalQuantity(items)
 }
 
 
@@ -83,6 +66,58 @@ function decItem(card, left, ind) {
         card.querySelector(".counter__dec").classList.add("counter_color-disabled")
         card.querySelector(".counter__dec").classList.remove("color_black")
     }
+}
+function decPrice(id) {
+    let items = JSON.parse(localStorage.getItem("L0_itemsQuantity"))
+    items.cards = items.cards.map(card => {if(card.id == id) {
+            card.quantity -= 1;
+            card.total_price = card.item_price.replace(" ", '') * card.quantity;
+        }; return card;
+    })
+    localStorage.setItem("L0_itemsQuantity", JSON.stringify(items))
+    changeTotalPrice(id, items)
+    changeTotalQuantity(items)
+}
+function changeTotalPrice(id, items) {
+    const item_total = countItemTotalPrice(items.cards[id].total_price, items.cards[id].quantity)
+    document.querySelectorAll('.available__card')[id]
+            .querySelectorAll(".available__price-value span").forEach(elem => elem.textContent = item_total)
+
+    const total = items.cards.map(card => card.total_price).reduce((count, price)=> count + price)
+    document.querySelector(".total__price-total span span").textContent = countItemTotalPrice(total, 1)
+
+    changePrevTotalPrice(items)
+}
+function changePrevTotalPrice(items) {
+    const prev_totals = items.cards.map(card => countItemTotalPrice(card.prev_item_price, card.quantity))
+    let total_prev = prev_totals.reduce((count, price) => formedStrToNum(count) + formedStrToNum(price))
+    total_prev = countItemTotalPrice(total_prev, 1)
+    document.querySelector(".total__price-point .total__price-tag").textContent = `${total_prev}`
+
+    prev_totals.forEach((price,index) => {
+        document.querySelectorAll(".available__card")[index]
+        .querySelectorAll(".available__prev-cost").forEach(prev_price => {
+            prev_price.getElementsByClassName("available__prev-cost-tag")[0].textContent = `${price}`
+        })
+    })
+}
+function changeTotalQuantity(items) {
+    const quantity = items.cards.map(card => card.quantity).reduce((count, num) => count + num)
+    document.querySelector(".total__price-point span").textContent = `${quantity} ${formProd(quantity)}`
+}
+function formProd(quantity) {
+    const num = quantity%100;
+    if(Math.floor(num/10) != 1 && num%10 == 1) return 'товар';
+    if(Math.floor(num/10) != 1 && [2,3,4].includes(num%10)) return 'товара';
+    return 'товаров';
+}
+function formedStrToNum(formedStr) {
+    if(typeof formedStr == "string" && formedStr.includes(' ')) {
+        formedStr = formedStr.split(' ')
+        formedStr = formedStr.join('')
+        formedStr = Number(formedStr)
+    }
+    return  formedStr;
 }
 
 
