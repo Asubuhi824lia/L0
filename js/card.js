@@ -78,14 +78,18 @@ function decPrice(id) {
 }
 
 
-function changePrices(id, items) {
-    changeItemPrice(id, items)
+function changePrices(id, items, isDel = false) {
+    if(!isDel) changeItemPrice(id, items)
+
     const total = changeTotalPrice(items)
     const prev_total = changePrevTotalPrice(items)
     changeTotalQuantity(items)
     changeDiscount(total, prev_total)
+
+    if (document.querySelector("#pay-immediately").checked) changeTotalBtnText()
 }
-function changeItemPrice(id, items) {
+function changeItemPrice(ind, items) {
+    const id = items.cards.map((card,id) => (card.id == ind) ? id : null).filter(id => id != null)[0]
     const item_total = countItemTotalPrice(items.cards[id].total_price, items.cards[id].quantity)
     document.querySelectorAll('.available__card')[id]
             .querySelectorAll(".available__price-value span").forEach(elem => elem.textContent = item_total)
@@ -116,7 +120,7 @@ function changeTotalQuantity(items) {
     document.querySelector(".total__price-point span").textContent = `${quantity} ${formProd(quantity)}`
 }
 function changeDiscount(totalPrice, prevTotalPrice) {
-    const discount = numToFormedStr(prevTotalPrice - totalPrice)
+    const discount = numToFormedStr(prevTotalPrice - totalPrice).trim()
     document.querySelector(".total__price-discount").textContent = `−${discount}`
 }
 
@@ -206,9 +210,9 @@ function addDelCardListener(cards)
 {
     cards.forEach(item => {
         const cardsElem = document.querySelectorAll(`.card`)
-        cardsElem.forEach(card => {
-            const delBtn = card.querySelector(".actions__to-basket")
-            delBtn.addEventListener("click", () => delCard(card, item.id, cards))
+        cardsElem.forEach(cardElem => {
+            const delBtn = cardElem.querySelector(".actions__to-basket")
+            delBtn.addEventListener("click", () => delCard(cardElem, item.id, cards))
             delBtn.addEventListener("mouseover", () => {
                 delBtn.querySelector("img").attributes.src.value = "./icons/basket/to_basket_hover.svg"
             })
@@ -218,14 +222,15 @@ function addDelCardListener(cards)
         })
     })
 }
-function delCard(card, index, cards) {
+function delCard(cardElem, index, cards) {
     cards = cards.filter(card => card.id != index)
 
-    const card_id = Array.from(card.parentElement.children).map((elem,ind)=>elem==card ? ind:null).filter(ind => ind!=null)[0]
+    const card_id = Array.from(cardElem.parentElement.children).map((elem,ind)=>elem==cardElem ? ind:null).filter(ind => ind!=null)[0]
     const a_card  = document.querySelectorAll(`.available .card`)[card_id]
     const un_card = document.querySelectorAll(`.unavailable .card`)[card_id]
     a_card.remove()
     un_card.remove()
+    removeProdPrice(card_id)
 
     const unavNum = document.getElementById("unavailable__products-list").childElementCount
     document.querySelector(".unavailable-header h4").innerText = `Отсутствуют · ${unavNum} товара`
@@ -237,4 +242,11 @@ function delCard(card, index, cards) {
     })
 
 }
+function removeProdPrice(id) {
+    let items = JSON.parse(localStorage.getItem("L0_itemsQuantity"))
+    items.cards = items.cards.filter((card,i) => i != id)
+    
+    localStorage.setItem("L0_itemsQuantity", JSON.stringify(items))
 
+    changePrices(id, items, true)
+}

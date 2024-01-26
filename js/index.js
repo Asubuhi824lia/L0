@@ -65,12 +65,15 @@ document.getElementById("collapseUnavailable").addEventListener("click", (el) =>
 })
 
 document.querySelector("#pay-immediately").addEventListener("click", (checkbox) => {
-    if(checkbox.target.checked) {
-        let total = JSON.parse(localStorage.getItem("L0_itemsQuantity"))
-            total = changeTotalPrice(total)
-            total = numToFormedStr(total)
-        document.querySelector("#total__order").textContent = `Оплатить ${total} com`
-    } else {
+    if(checkbox.target.checked) 
+        changeTotalBtnText()
+    else 
         document.querySelector("#total__order").textContent = "Заказать"
-    }
 })
+
+function changeTotalBtnText() {
+    let total = JSON.parse(localStorage.getItem("L0_itemsQuantity"))
+        total = changeTotalPrice(total)
+        total = numToFormedStr(total)
+    document.querySelector("#total__order").textContent = `Оплатить ${total} com`
+}
