@@ -30,42 +30,12 @@ let cards = [
         apps:[""], "warehouse":"Коледино WB", "firm": "OOO Вайлдберриз", "left": "2"
     }
 ]
-// let card_names = [];
-
-
-// fetch('./json/data.json')
-//     .then(response => response.json())
-//     .then(data => {
-//         data.cards.forEach(card => {
-//             card_names.push(card.name)
-//         })
-//         cards = data.cards
-//     }).then(() => {
-//         onResize()
-
-//         addDelCardListener()
-//         addToggleFavoriteCardListener()
-
-//         addIncItemListener()
-//         addDecItemListener()
-//     })
-//     .catch(error => console.log(error))
 
 cards.forEach(card => {
     card_names.push(card.name)
 })
 
-
 onResize()
-
-// addDelCardListener()
-// addToggleFavoriteCardListener()
-
-// addIncItemListener()
-// addDecItemListener()
-
-window.addEventListener("resize", onResize)
-
 
 
 document.getElementById("selectAll").addEventListener("click", (main) => {
@@ -73,7 +43,6 @@ document.getElementById("selectAll").addEventListener("click", (main) => {
         element.checked = main.target.checked;
     })
 })
-
 
 document.getElementById("collapseAvailable").getElementsByTagName('img')[0].style.pointerEvents = "none";
 document.getElementById("collapseUnavailable").getElementsByTagName('img')[0].style.pointerEvents = "none";
@@ -93,4 +62,15 @@ document.getElementById("collapseUnavailable").addEventListener("click", (el) =>
     list.classList.toggle("display_b")
     el.target.getElementsByTagName('img')[0].classList.toggle("transform_rotate_half")
     el.target.getElementsByTagName('img')[0].classList.toggle("transform_rotate_zero")
+})
+
+document.querySelector("#pay-immediately").addEventListener("click", (checkbox) => {
+    if(checkbox.target.checked) {
+        let total = JSON.parse(localStorage.getItem("L0_itemsQuantity"))
+            total = changeTotalPrice(total)
+            total = numToFormedStr(total)
+        document.querySelector("#total__order").textContent = `Оплатить ${total} com`
+    } else {
+        document.querySelector("#total__order").textContent = "Заказать"
+    }
 })

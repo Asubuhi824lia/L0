@@ -10,9 +10,9 @@
     <link rel="stylesheet" media="screen and (width >= 1024px)" href="./css/large.css">
     <link rel="stylesheet" media="screen and (min-width: 320px) and (max-width: 1024px)" href="./css//tablet.css">
     <script src="./js/card.js"></script>
-    <script src="./js/inputs.js" defer></script>
     <script src="./js/load.js"   defer></script>
-    <script src="./js/index.js"  type="module" defer></script>
+    <script src="./js/index.js"  defer></script>
+    <script src="./js/inputs.js" defer></script>
 </head>
 
 <body class="text_font color_black" onresize="onResize()">
@@ -392,6 +392,8 @@
 
                 let available__card   = document.querySelectorAll(".available__card-name")
                 let unavailable__card = document.querySelectorAll(".unavailable__card-name")
+                
+                if(available__card.length == 0 || unavailable__card.length == 0) return;
                 card_names.forEach((card, index) => {
                     if(available__card[index].innerText == card.full) return;
                     else {

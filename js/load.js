@@ -8,11 +8,11 @@ fetch('../json/data.json')
         // поместить в localStorage динамические параметры товаров
         localStorage.setItem("L0_itemsQuantity", JSON.stringify(
             {cards: data.cards.map(card => ({
-                id: card.id, 
-                quantity: card.quantity, 
+                id:         card.id, 
+                quantity:   card.quantity, 
                 item_price: card.cost, 
-                prev_item_price: card.prev_cost,
-                total_price: card.cost.replace(" ", '') * card.quantity
+                prev_item_price:card.prev_cost,
+                total_price:    card.cost.replace(" ", '') * card.quantity
             }))}
         ))
 
@@ -95,14 +95,4 @@ function createUnavailableCard(objCard) {
     })
 
     return template;
-}
-
-function countItemTotalPrice(itemCost, quantity) {
-    let cost = (typeof itemCost == "number") ? String(itemCost) : String(itemCost.split(" ").join('') * quantity)
-    let fraction = cost.includes('.') ? '.'+Number(cost).toFixed(2).split('.')[1] : null
-    fraction = (fraction == ".00") ? null : fraction
-    cost = Array.from(cost.split('.')[0])
-                .reverse().map((num, ind) => ((ind+1) % 3 == 0) ? ` ${num}` : num)
-                .reverse().join('')
-    return cost + (fraction || '')
 }

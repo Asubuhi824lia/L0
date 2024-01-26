@@ -79,16 +79,18 @@ function decPrice(id) {
 
 
 function changePrices(id, items) {
-    const total = changeTotalPrice(id, items)
+    changeItemPrice(id, items)
+    const total = changeTotalPrice(items)
     const prev_total = changePrevTotalPrice(items)
     changeTotalQuantity(items)
     changeDiscount(total, prev_total)
 }
-function changeTotalPrice(id, items) {
+function changeItemPrice(id, items) {
     const item_total = countItemTotalPrice(items.cards[id].total_price, items.cards[id].quantity)
     document.querySelectorAll('.available__card')[id]
             .querySelectorAll(".available__price-value span").forEach(elem => elem.textContent = item_total)
-
+}
+function changeTotalPrice(items) {
     const total = items.cards.map(card => card.total_price).reduce((count, price)=> count + price)
     document.querySelector(".total__price-total span span").textContent = numToFormedStr(total)
 
@@ -135,6 +137,15 @@ function formedStrToNum(formedStr) {
 }
 function numToFormedStr(num) {
     let cost = String(num)
+    let fraction = cost.includes('.') ? '.'+Number(cost).toFixed(2).split('.')[1] : null
+    fraction = (fraction == ".00") ? null : fraction
+    cost = Array.from(cost.split('.')[0])
+                .reverse().map((num, ind) => ((ind+1) % 3 == 0) ? ` ${num}` : num)
+                .reverse().join('')
+    return cost + (fraction || '')
+}
+function countItemTotalPrice(itemCost, quantity) {
+    let cost = (typeof itemCost == "number") ? String(itemCost) : String(itemCost.split(" ").join('') * quantity)
     let fraction = cost.includes('.') ? '.'+Number(cost).toFixed(2).split('.')[1] : null
     fraction = (fraction == ".00") ? null : fraction
     cost = Array.from(cost.split('.')[0])
