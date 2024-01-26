@@ -99,9 +99,10 @@ function createUnavailableCard(objCard) {
 
 function countItemTotalPrice(itemCost, quantity) {
     let cost = (typeof itemCost == "number") ? String(itemCost) : String(itemCost.split(" ").join('') * quantity)
-    const fraction = cost.includes('.') ? '.'+Number(cost).toFixed(2).split('.')[1] : null;
+    let fraction = cost.includes('.') ? '.'+Number(cost).toFixed(2).split('.')[1] : null
+    fraction = (fraction == ".00") ? null : fraction
     cost = Array.from(cost.split('.')[0])
                 .reverse().map((num, ind) => ((ind+1) % 3 == 0) ? ` ${num}` : num)
                 .reverse().join('')
-    return cost + (fraction || '');
+    return cost + (fraction || '')
 }
