@@ -134,12 +134,12 @@
     </template>
 
 
-    <div class="popup__bg">
+    <div class="popup__bg popup-pay__bg">
         <div class="popup popup-pay">
             <section>
                 <header>
                     <h3 class="get__title_font color_black">Способ оплаты</h3>
-                    <img src="./icons/popup/close.svg" class="close-popup" width="24px" height="24px">
+                    <img src="./icons/popup/close.svg" class="close-popup-pay" width="24px" height="24px">
                 </header>
 
                 <main class="popup_options">
@@ -165,6 +165,17 @@
                     </label>
                 </main>
             </section>
+
+            <button class="button bg-color_pink subtitle-accent_font color_white">Выбрать</button>
+        </div>
+    </div>
+
+    <div class="popup__bg popup-delivery__bg">
+        <div class="popup popup-delivery">
+            <header>
+                <h3 class="get__title_font color_black">Способ доставки</h3>
+                <img src="./icons/popup/close.svg" class="close-popup-delivery" width="24px" height="24px">
+            </header>
 
             <button class="button bg-color_pink subtitle-accent_font color_white">Выбрать</button>
         </div>
@@ -245,7 +256,7 @@
                     <section class="way-delivery main_bg-color-secondary">
                         <div class="way__header">
                             <h3 class="get__title_font color_black">Способ доставки</h3>
-                            <a class="open-popup change-btn subtitle-accent_font color_pink">Изменить</a>
+                            <a class="open-popup-delivery change-btn subtitle-accent_font color_pink">Изменить</a>
                         </div>
                         <div class="way-delivery__point">
                             <h4 class="subtitle_font">Пункт выдачи</h4>
@@ -304,7 +315,7 @@
                     <section class="way-pay main_bg-color-secondary">
                         <div class="way__header way-pay__header">
                             <h3 class="get__title_font color_black">Способ оплаты</h3>
-                            <a class="open-popup change-btn subtitle-accent_font color_pink">Изменить</a>
+                            <a class="open-popup-pay change-btn subtitle-accent_font color_pink">Изменить</a>
                         </div>
                         <div class="card-info text_font">
                             <img src="./icons/get/mir_pay.svg" width="32px" height="24px">
@@ -369,7 +380,7 @@
                 <div class="total__way-delivery">
                     <div class="total__way-pay-header">
                         <div class="subtitle-accent_font">Доставка в пункт выдачи</div>
-                        <img class="open-popup edit-btn" src="./icons/get/edit.svg" width="16px" height="16px">
+                        <img class="open-popup-delivery edit-btn" src="./icons/get/edit.svg" width="16px" height="16px">
                     </div>
                     <p class="caption_font">Бишкек, улица Ахматбека Суюмбаева, 12/1</p>
                     <span class="total__delivery-period caption_font color_pink">5–8 фев</span>
@@ -385,7 +396,7 @@
                 <div class="total__way-pay">
                     <div class="total__way-pay-header">
                         <div class="subtitle-accent_font">Оплата картой</div>
-                        <img class="open-popup edit-btn" src="./icons/get/edit.svg" width="16px" height="16px">
+                        <img class="open-popup-pay edit-btn" src="./icons/get/edit.svg" width="16px" height="16px">
                     </div>
                     <div class="card-info caption_font">
                         <img src="./icons/get/mir_pay.svg" width="32px" height="24px">
