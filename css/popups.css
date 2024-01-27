@@ -1,0 +1,72 @@
+/* Основная часть */
+.popup__bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 1;
+    background: rgba(0,0,0,0.5);
+    opacity: 0; /* Скрываем фон и сам попап */
+    pointer-events: none; /* Запрещаем ему быть целью событий */
+    transition: 0.5s all;
+}
+/* При добавлении класса 'active' */
+.popup__bg.active {
+    opacity: 1; /* Показываем фон и попап */
+    pointer-events: all; /* Возвращаем события */
+    transition: 0.5s all;
+}
+
+.popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0); /* Центрируем и масштабируем в 0 само окно */
+    background: #fff;
+    width: 400px;
+    padding: 25px;
+    transition: 0.5s all;
+}
+/* При добавлении класса 'active' */
+.popup.active { 
+    transform: translate(-50%, -50%) scale(1); /* Так же центрируем и плавно увеличиваем */
+    transition: 0.5s all;
+}
+
+
+/* Визуал поп-апов */
+.popup {
+    height:  408px;
+    padding: 16px 24px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.popup header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: fit-content;
+    padding: 0;
+}
+.popup button {
+    padding-left: 48px;
+    padding-right:48px;
+    width: fit-content;
+}
+
+.popup-pay {
+    width: 400px;
+}
+.popup_options {
+    display: grid;
+    row-gap: 16px;
+    margin-top: 13px;
+}
+.popup_option input {margin-right: 8px;}
+.popup_option img {margin-right: 4px;}
+
+.popup-delivery {
+    width: 500px;
+}

@@ -6,10 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/popups.css">
     <link rel="stylesheet" href="./css/fonts-style.css">
     <link rel="stylesheet" media="screen and (width >= 1024px)" href="./css/large.css">
     <link rel="stylesheet" media="screen and (min-width: 320px) and (max-width: 1024px)" href="./css//tablet.css">
     <script src="./js/card.js"></script>
+    <script src="./js/popups.js" defer></script>
     <script src="./js/load.js"   defer></script>
     <script src="./js/index.js"  defer></script>
     <script src="./js/inputs.js" defer></script>
@@ -22,6 +24,7 @@
     <template id="paramTemp">
         <span class="caption_margin"><!-- Addition param --></span>
     </template>
+
     <template id="available__cardTemp">
         <div class="available__card card">
             <div class="available__card-header">
@@ -102,7 +105,6 @@
             </div>
         </div>
     </template>
-
     <template id="unavailable__cardTemp">
         <div class="unavailable__card card">
             <div class="unavailable__card-header">
@@ -130,6 +132,43 @@
             </div>
         </div>
     </template>
+
+
+    <div class="popup__bg">
+        <div class="popup popup-pay">
+            <section>
+                <header>
+                    <h3 class="get__title_font color_black">Способ оплаты</h3>
+                    <img src="./icons/popup/close.svg" class="close-popup" width="24px" height="24px">
+                </header>
+
+                <main class="popup_options">
+                    <label class="popup_option">
+                        <input type="radio">
+                        <img src="./icons/get/mir_pay.svg" width="32px" height="24px">
+                        <span class="card-number text_font">1234 56•• •••• 1234</span>
+                    </label>
+                    <label class="popup_option">
+                        <input type="radio">
+                        <img src="./icons/get/visa_pay.svg" width="32px" height="24px">
+                        <span class="card-number text_font">1234 56•• •••• 1234</span>
+                    </label>
+                    <label class="popup_option">
+                        <input type="radio">
+                        <img src="./icons/get/mastercard_pay.svg" width="32px" height="24px">
+                        <span class="card-number text_font">1234 56•• •••• 1234</span>
+                    </label>
+                    <label class="popup_option">
+                        <input type="radio">
+                        <img src="./icons/get/maestro_pay.svg" width="32px" height="24px">
+                        <span class="card-number text_font">1234 56•• •••• 1234</span>
+                    </label>
+                </main>
+            </section>
+
+            <button class="button bg-color_pink subtitle-accent_font color_white">Выбрать</button>
+        </div>
+    </div>
 
 
     <div class="wrapper wrapper_bg-color">
@@ -206,7 +245,7 @@
                     <section class="way-delivery main_bg-color-secondary">
                         <div class="way__header">
                             <h3 class="get__title_font color_black">Способ доставки</h3>
-                            <a class="change-btn subtitle-accent_font color_pink">Изменить</a>
+                            <a class="open-popup change-btn subtitle-accent_font color_pink">Изменить</a>
                         </div>
                         <div class="way-delivery__point">
                             <h4 class="subtitle_font">Пункт выдачи</h4>
@@ -265,7 +304,7 @@
                     <section class="way-pay main_bg-color-secondary">
                         <div class="way__header way-pay__header">
                             <h3 class="get__title_font color_black">Способ оплаты</h3>
-                            <a class="change-btn subtitle-accent_font color_pink">Изменить</a>
+                            <a class="open-popup change-btn subtitle-accent_font color_pink">Изменить</a>
                         </div>
                         <div class="card-info text_font">
                             <img src="./icons/get/mir_pay.svg" width="32px" height="24px">
@@ -330,7 +369,7 @@
                 <div class="total__way-delivery">
                     <div class="total__way-pay-header">
                         <div class="subtitle-accent_font">Доставка в пункт выдачи</div>
-                        <img class="edit-btn" src="./icons/get/edit.svg" width="16px" height="16px">
+                        <img class="open-popup edit-btn" src="./icons/get/edit.svg" width="16px" height="16px">
                     </div>
                     <p class="caption_font">Бишкек, улица Ахматбека Суюмбаева, 12/1</p>
                     <span class="total__delivery-period caption_font color_pink">5–8 фев</span>
@@ -346,7 +385,7 @@
                 <div class="total__way-pay">
                     <div class="total__way-pay-header">
                         <div class="subtitle-accent_font">Оплата картой</div>
-                        <img class="edit-btn" src="./icons/get/edit.svg" width="16px" height="16px">
+                        <img class="open-popup edit-btn" src="./icons/get/edit.svg" width="16px" height="16px">
                     </div>
                     <div class="card-info caption_font">
                         <img src="./icons/get/mir_pay.svg" width="32px" height="24px">
@@ -365,7 +404,7 @@
                     </div>
                     <p class="description">Спишем оплату с карты при получении</p>
                 </div>
-                <button class="bg-color_pink subtitle-accent_font color_white" id="total__order">Заказать</button>
+                <button class="button bg-color_pink subtitle-accent_font color_white" id="total__order">Заказать</button>
                 <div class="total__agree caption_font color_black">
                     <img src="./icons/get/rules_checked.svg" width="12.51px" height="10.16px">
                     <p>Соглашаюсь <span> с правилами пользования торговой площадкой</span> и <span> возврата</span></p>
