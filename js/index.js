@@ -70,10 +70,48 @@ document.querySelector("#pay-immediately").addEventListener("click", (checkbox) 
     else 
         document.querySelector("#total__order").textContent = "Заказать"
 })
-
 function changeTotalBtnText() {
     let total = JSON.parse(localStorage.getItem("L0_itemsQuantity"))
         total = changeTotalPrice(total)
         total = numToFormedStr(total)
     document.querySelector("#total__order").textContent = `Оплатить ${total} com`
 }
+
+
+// tooltip
+let tooltipElem;
+
+document.onmouseover = function(event) {
+    let target = event.target;
+
+    // если у нас есть подсказка...
+    let tooltipHtml = target.dataset.tooltip;
+    if (!tooltipHtml) return;
+
+    // ...создадим элемент для подсказки
+
+    tooltipElem = document.createElement('div');
+    tooltipElem.className = 'tooltip';
+    tooltipElem.innerHTML = tooltipHtml;
+    document.body.append(tooltipElem);
+
+    // спозиционируем его сверху от аннотируемого элемента (top-center)
+    let coords = target.getBoundingClientRect();
+
+    let left = coords.left + (target.offsetWidth - tooltipElem.offsetWidth) / 2;
+    if (left < 0) left = 0; // не заезжать за левый край окна
+
+    let top = coords.top + target.offsetHeight + 5;
+
+    tooltipElem.style.left = left + 'px';
+    tooltipElem.style.top = top + 'px';
+};
+
+document.onmouseout = function(e) {
+
+    if (tooltipElem) {
+    tooltipElem.remove();
+    tooltipElem = null;
+    }
+
+};

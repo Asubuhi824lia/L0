@@ -69,10 +69,10 @@
                 </div>
                 <div class="actions">
                     <button class="actions__to-like">
-                        <img src="./icons/basket/to_like.svg">
+                        <img src="./icons/basket/to_like.svg" width="20px" height="20px">
                     </button>
                     <button class="actions__to-basket">
-                        <img src="./icons/basket/to_basket.svg">
+                        <img src="./icons/basket/to_basket.svg" width="20px" height="20px">
                     </button>
                 </div>
             </div>
@@ -82,7 +82,23 @@
                     <h4 class="subtitle-accent_font available__price-currency"><!-- сом --></h4>
                 </div>
                 <span class="available__prev-cost caption_font color_gray">
-                    <span class="available__prev-cost-tag"></span><span class="available__prev-cost-cy"></span><!-- 1051 сом --></span>
+                    <span class="available__prev-cost-tag"
+                    data-tooltip="
+                    <table style='border-spacing: 8px 8px'>
+                        <tbody>
+                            <tr>
+                                <td class='color_gray'>Скидка 55%</td>
+                                <td style='text-align:right'>−300 сом</td>
+                            </tr>
+                            <tr>
+                                <td class='color_gray'>Скидка покупателя 10%</td>
+                                <td style='text-align:right'>−30 сом</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    "><!-- 1051 --></span>
+                    <span class="available__prev-cost-cy"><!-- сом --></span>
+                </span>
             </div>
         </div>
     </template>
@@ -240,7 +256,8 @@
                             <div class="bonus caption_font color_black">
                                 <img src="./icons/get/bonus_checked.svg" width="22px" height="22px">
                                 <p>Обратная доставка товаров на склад при отказе — 
-                                    <span class="color_green bonus__free_border-bottom">бесплатно</span>
+                                    <span data-tooltip="Если товары вам не подойдут, мы вернем<br>их обратно на склад — это бесплатно"
+                                    class="color_green bonus__free_border-bottom">бесплатно</span>
                                 </p>
                             </div>
                         </div>
@@ -321,7 +338,9 @@
                 <div class="total__bonus bg-color_smoky-dark">
                     <div class="bonus caption_font color_black">
                         <img src="./icons/get/bonus_checked.svg" width="22px" height="22px">
-                        <p>Обратная доставка товаров на склад при отказе — <span class="color_green bonus__free_border-bottom">бесплатно</span></p>
+                        <p>Обратная доставка товаров на склад при отказе — 
+                            <span data-tooltip="Если товары вам не подойдут, мы вернем<br>их обратно на склад — это бесплатно"
+                            class="color_green bonus__free_border-bottom">бесплатно</span></p>
                     </div>
                 </div>
                 <div class="total__way-pay">
