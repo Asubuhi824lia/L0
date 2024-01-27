@@ -29,7 +29,7 @@ function incPrice(id) {
     let items = JSON.parse(localStorage.getItem("L0_itemsQuantity"))
     items.cards = items.cards.map(card => {if(card.id == id) {
             card.quantity += 1;
-            card.total_price = formedStrToNum(card.item_price) * card.quantity;
+            card.total_price = StrToNum(card.item_price) * card.quantity;
         }; return card;
     })
     localStorage.setItem("L0_itemsQuantity", JSON.stringify(items))
@@ -70,7 +70,7 @@ function decPrice(id) {
     let items = JSON.parse(localStorage.getItem("L0_itemsQuantity"))
     items.cards = items.cards.map(card => {if(card.id == id) {
             card.quantity -= 1;
-            card.total_price = formedStrToNum(card.item_price) * card.quantity;
+            card.total_price = StrToNum(card.item_price) * card.quantity;
         }; return card;
     })
     localStorage.setItem("L0_itemsQuantity", JSON.stringify(items))
@@ -81,30 +81,33 @@ function decPrice(id) {
 function changePrices(id, items, isDel = false) {
     if(!isDel) changeItemPrice(id, items)
 
-    const total = changeTotalPrice(items)
-    const prev_total = changePrevTotalPrice(items)
+    const total = calcTotalPrice(items)
+    changeTotalPrice(total)
+    const prev_total = calcPrevTotalPrice(items)
+    changePrevTotalPrice(prev_total)
+
     changeTotalQuantity(items)
     changeDiscount(total, prev_total)
 
     if (document.querySelector("#pay-immediately").checked) changeTotalBtnText()
 }
+
 function changeItemPrice(ind, items) {
     const id = items.cards.map((card,id) => (card.id == ind) ? id : null).filter(id => id != null)[0]
     const item_total = countItemTotalPrice(items.cards[id].total_price, items.cards[id].quantity)
     document.querySelectorAll('.available__card')[id]
             .querySelectorAll(".available__price-value span").forEach(elem => elem.textContent = item_total)
 }
-function changeTotalPrice(items) {
-    const total = items.cards.map(card => card.total_price).reduce((count, price)=> count + price)
-    document.querySelector(".total__price-total span span").textContent = numToFormedStr(total)
-
-    return formedStrToNum(total)
+function changeTotalPrice(total) {
+    document.querySelector(".total__price-total span span").textContent = numToStr(total)
 }
-function changePrevTotalPrice(items) {
+function calcTotalPrice(items) {
+    const total = items.cards.map(card => card.total_price).reduce((count, price)=> count + price)
+    return StrToNum(total)
+}
+
+function changePrevItemPrice(items) {
     const prev_totals = items.cards.map(card => countItemTotalPrice(card.prev_item_price, card.quantity))
-    let total_prev = prev_totals.reduce((count, price) => formedStrToNum(count) + formedStrToNum(price))
-    total_prev = numToFormedStr(total_prev)
-    document.querySelector(".total__price-point .total__price-tag").textContent = `${total_prev}`
 
     prev_totals.forEach((price,index) => {
         document.querySelectorAll(".available__card")[index]
@@ -113,17 +116,29 @@ function changePrevTotalPrice(items) {
         })
     })
 
-    return formedStrToNum(total_prev)
+    return prev_totals
 }
-function changeTotalQuantity(items) {
-    const quantity = items.cards.map(card => card.quantity).reduce((count, num) => count + num)
-    document.querySelector(".total__price-point span").textContent = `${quantity} ${formProd(quantity)}`
+function changePrevTotalPrice(total_prev) {
+    total_prev = numToStr(total_prev)
+    document.querySelector(".total__price-point .total__price-tag").textContent = `${total_prev}`
 }
-function changeDiscount(totalPrice, prevTotalPrice) {
-    const discount = numToFormedStr(prevTotalPrice - totalPrice).trim()
-    document.querySelector(".total__price-discount").textContent = `−${discount}`
+function calcPrevTotalPrice(items) {
+    const prev_totals = changePrevItemPrice(items)
+    let total_prev = prev_totals.reduce((count, price) => StrToNum(count) + StrToNum(price))
+    return StrToNum(total_prev)
 }
 
+function changeTotalQuantity(items) {
+    const quantity = calcTotalQuantity(items)
+    document.querySelector(".total__price-point span").textContent = `${quantity} ${formProd(quantity)}`
+}
+function calcTotalQuantity(items) {
+    return items.cards.map(card => card.quantity).reduce((count, num) => count + num)
+}
+function changeDiscount(totalPrice, prevTotalPrice) {
+    const discount = numToStr(prevTotalPrice - totalPrice).trim()
+    document.querySelector(".total__price-discount").textContent = `−${discount}`
+}
 
 function formProd(quantity) {
     const num = quantity%100;
@@ -131,7 +146,7 @@ function formProd(quantity) {
     if(Math.floor(num/10) != 1 && [2,3,4].includes(num%10)) return 'товара';
     return 'товаров';
 }
-function formedStrToNum(formedStr) {
+function StrToNum(formedStr) {
     if(typeof formedStr == "string" && formedStr.includes(' ')) {
         formedStr = formedStr.split(' ')
         formedStr = formedStr.join('')
@@ -139,7 +154,7 @@ function formedStrToNum(formedStr) {
     }
     return  formedStr;
 }
-function numToFormedStr(num) {
+function numToStr(num) {
     let cost = String(num)
     let fraction = cost.includes('.') ? '.'+Number(cost).toFixed(2).split('.')[1] : null
     fraction = (fraction == ".00") ? null : fraction

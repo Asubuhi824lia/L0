@@ -54,6 +54,18 @@ document.getElementById("collapseAvailable").addEventListener("click", (el) => {
     list.classList.toggle("display_b")
     el.target.getElementsByTagName('img')[0].classList.toggle("transform_rotate_half")
     el.target.getElementsByTagName('img')[0].classList.toggle("transform_rotate_zero")
+
+    // в свёрнутом виде - отобразить кол-во и общую стоимость товаров
+    if(list.classList.contains("display_n")) {
+        const items = JSON.parse(localStorage.getItem("L0_itemsQuantity"))
+        const total     = (items.cards.length != 0) ? numToStr( calcTotalPrice(items) ) : 0
+        const quantity  = (items.cards.length != 0) ? calcTotalQuantity(items) : 0
+        document.querySelector(".available-header_subtitle")
+                .textContent = `${quantity} ${formProd(quantity)} · ${total} сом`
+    }
+    else {
+        document.querySelector(".available-header_subtitle").textContent = "Выбрать все"
+    }
 })
 document.getElementById("collapseUnavailable").addEventListener("click", (el) => {
     let list = document.getElementById("unavailable__products-list")
@@ -73,7 +85,7 @@ document.querySelector("#pay-immediately").addEventListener("click", (checkbox) 
 function changeTotalBtnText() {
     let total = JSON.parse(localStorage.getItem("L0_itemsQuantity"))
         total = changeTotalPrice(total)
-        total = numToFormedStr(total)
+        total = numToStr(total)
     document.querySelector("#total__order").textContent = `Оплатить ${total} com`
 }
 
