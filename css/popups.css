@@ -56,17 +56,60 @@
     width: fit-content;
 }
 
-.popup-pay {
-    width: 400px;
+.popup-pay {width: 400px;}
+.popup-delivery {width: 500px;}
+.popup-delivery__header_font {
+    font-family: Segoe UI;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 28px;
+    letter-spacing: -0.01em;
 }
-.popup_options {
+
+.pay-ways {
     display: grid;
     row-gap: 16px;
     margin-top: 13px;
 }
-.popup_option input {margin-right: 8px;}
-.popup_option img {margin-right: 4px;}
+.pay-ways__option input {margin-right: 8px;}
+.pay-ways__option img {margin-right: 4px;}
 
-.popup-delivery {
-    width: 500px;
+.delivery-ways {
+    margin-top: 13px;
+    display: grid;
+    column-gap: 8px;
+    grid-template-columns: repeat(2, 1fr);
+}
+.delivery-ways button {
+    border-radius: 20px;
+    border: 2px solid;
+    padding: 9px 0 11px;
+    width: auto;
+}
+.delivery-addresses {
+    display: grid;
+    row-gap: 8px;
+    margin-top: 24px;
+}
+.delivery-addresses__option {
+    display: grid;
+    grid-template-columns: 20px 1fr 20px;
+    column-gap: 8px;
+}
+.delivery-addresses__option input  {height: 16px; margin: 9px 2px 0;}
+.delivery-addresses__option span   {padding:4px 0 8px;}
+.delivery-addresses__option button {display:flex; padding:2.5px;}
+
+.button_border-color_disabled {border-color: rgba(203, 17, 171, 0.15) !important;}
+.button_border-color_chosen   {border-color: rgb(203, 17, 171)        !important;}
+
+@media (max-width: 320px) {
+    .popup-delivery__header_font {
+        font-weight: 600 !important;
+    }
+
+    .popup {
+        width:  100vw;
+        height: 100vh;
+    }
 }

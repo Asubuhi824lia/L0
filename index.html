@@ -138,27 +138,27 @@
         <div class="popup popup-pay">
             <section>
                 <header>
-                    <h3 class="get__title_font color_black">Способ оплаты</h3>
+                    <h3 class="popup-delivery__header_font color_black">Способ оплаты</h3>
                     <img src="./icons/popup/close.svg" class="close-popup-pay" width="24px" height="24px">
                 </header>
 
-                <main class="popup_options">
-                    <label class="popup_option">
+                <main class="pay-ways">
+                    <label class="pay-ways__option">
                         <input type="radio">
                         <img src="./icons/get/mir_pay.svg" width="32px" height="24px">
                         <span class="card-number text_font">1234 56•• •••• 1234</span>
                     </label>
-                    <label class="popup_option">
+                    <label class="pay-ways__option">
                         <input type="radio">
                         <img src="./icons/get/visa_pay.svg" width="32px" height="24px">
                         <span class="card-number text_font">1234 56•• •••• 1234</span>
                     </label>
-                    <label class="popup_option">
+                    <label class="pay-ways__option">
                         <input type="radio">
                         <img src="./icons/get/mastercard_pay.svg" width="32px" height="24px">
                         <span class="card-number text_font">1234 56•• •••• 1234</span>
                     </label>
-                    <label class="popup_option">
+                    <label class="pay-ways__option">
                         <input type="radio">
                         <img src="./icons/get/maestro_pay.svg" width="32px" height="24px">
                         <span class="card-number text_font">1234 56•• •••• 1234</span>
@@ -172,10 +172,43 @@
 
     <div class="popup__bg popup-delivery__bg">
         <div class="popup popup-delivery">
-            <header>
-                <h3 class="get__title_font color_black">Способ доставки</h3>
-                <img src="./icons/popup/close.svg" class="close-popup-delivery" width="24px" height="24px">
-            </header>
+            <section>
+                <header>
+                    <h3 class="popup-delivery__header_font color_black">Способ доставки</h3>
+                    <img src="./icons/popup/close.svg" class="close-popup-delivery" width="24px" height="24px">
+                </header>
+
+                <main>
+                    <section class="delivery-ways">
+                        <button class="caption-bold_font color_black button_border-color_disabled">В пункт выдачи</button>
+                        <button class="caption-bold_font color_black button_border-color_chosen">Курьером</button>
+                    </section>
+                    <section class="delivery-addresses">
+                        <h4 class="caption-bold_font color_black">Мои адреса</h4>
+                        <label class="delivery-addresses__option">
+                            <input type="radio">
+                            <span class="card-number text_font">Бишкек, улица Табышалиева, 57</span>
+                            <button class="actions__to-basket">
+                                <img src="./icons/basket/to_basket.svg" width="20px" height="20px">
+                            </button>
+                        </label>
+                        <label class="delivery-addresses__option">
+                            <input type="radio">
+                            <span class="card-number text_font">Бишкек, улица Жукеева-Пудовкина, 77/1</span>
+                            <button class="actions__to-basket">
+                                <img src="./icons/basket/to_basket.svg" width="20px" height="20px">
+                            </button>
+                        </label>
+                        <label class="delivery-addresses__option">
+                            <input type="radio">
+                            <span class="card-number text_font">Бишкек, микрорайон Джал, улица Ахунбаева Исы, 67/1</span>
+                            <button class="actions__to-basket">
+                                <img src="./icons/basket/to_basket.svg" width="20px" height="20px">
+                            </button>
+                        </label>
+                    </section>
+                </main>
+            </section>
 
             <button class="button bg-color_pink subtitle-accent_font color_white">Выбрать</button>
         </div>

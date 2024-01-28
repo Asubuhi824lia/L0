@@ -82,6 +82,12 @@
     font-weight: 400;
     line-height: 16px;    
 }
+.caption-bold_font {
+    font-family: Segoe UI;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 16px;    
+}
 
 .footer__caption-text {text-align: center; color: rgba(255, 255, 255, 0.7);}
 
