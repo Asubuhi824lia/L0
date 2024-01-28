@@ -84,7 +84,7 @@ document.querySelector("#pay-immediately").addEventListener("click", (checkbox) 
 })
 function changeTotalBtnText() {
     let total = JSON.parse(localStorage.getItem("L0_itemsQuantity"))
-        total = changeTotalPrice(total)
+        total = calcTotalPrice(total)
         total = numToStr(total)
     document.querySelector("#total__order").textContent = `Оплатить ${total} com`
 }
