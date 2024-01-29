@@ -129,4 +129,5 @@
 .color_orange{color: rgba(240, 77, 17, 1);}
 .color_black {color: rgba(0, 0, 0, 1);}
 .color_gray  {color: rgba(151, 151, 175, 1);}
+.color_lightgray {color: rgb(160, 160, 164) !important;}
 

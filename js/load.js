@@ -15,6 +15,7 @@ fetch('../json/data.json')
                 total_price:    card.cost.replace(" ", '') * card.quantity
             }))}
         ))
+        localStorage.setItem("L0_points", JSON.stringify(data.points))
 
         // сформировать и вывести карточки товаров
         data.cards.forEach(card => {
@@ -26,6 +27,14 @@ fetch('../json/data.json')
         addDecItemListener(data.cards)
         addToggleFavoriteCardListener(data.cards)
         addDelCardListener(data.cards)
+
+        // Установить способ доставки
+        formPopupDeliveryWays(data.pickUp_points, data.delivery_points)
+        addDeliveryWaysBtnListener(data.points)
+
+        // Установить способ оплаты
+        formPopupPayWays(data["pay-ways"])
+        addPopupPayWaysBtnListener(data["pay-ways"])
 
         onResize()
     })

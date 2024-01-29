@@ -100,6 +100,11 @@
 .delivery-addresses__option span   {padding:4px 0 8px;}
 .delivery-addresses__option button {display:flex; padding:2.5px;} 
 .delivery-addresses__option button>img    {pointer-events: none;}
+.delivery-addresses__option .point_rating {
+    display: grid;
+    column-gap: 8px;
+    grid-template-columns: repeat(2, max-content);
+}
 
 .button_border-color_disabled {border-color: rgba(203, 17, 171, 0.15) !important;}
 .button_border-color_chosen   {border-color: rgb(203, 17, 171)        !important;}

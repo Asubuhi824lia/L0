@@ -7,12 +7,14 @@
     <title>Document</title>
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/popups.css">
+    <link rel="stylesheet" media="screen and (max-width: 320px)" href="./css/popups-mobile.css">
     <link rel="stylesheet" href="./css/fonts-style.css">
     <link rel="stylesheet" media="screen and (width >= 1024px)" href="./css/large.css">
     <link rel="stylesheet" media="screen and (min-width: 320px) and (max-width: 1024px)" href="./css//tablet.css">
-    <script src="./js/card.js"></script>
-    <script src="./js/popups.js" defer></script>
-    <script src="./js/load.js"   defer></script>
+    <script src="./js/card.js"></script> <!-- используется в load.js | popups.js | index.js -->
+    <script src="./js/popups.js" defer></script> <!-- используется в load.js -->
+    
+    <script src="./js/load.js"   defer></script> 
     <script src="./js/index.js"  defer></script>
     <script src="./js/inputs.js" defer></script>
 </head>
@@ -141,34 +143,20 @@
                     <h3 class="popup-delivery__header_font color_black">Способ оплаты</h3>
                     <img src="./icons/popup/close.svg" class="close close-popup-pay" width="24px" height="24px">
                 </header>
-
-                <main class="pay-ways">
-                    <label class="pay-ways__option">
-                        <input type="radio" checked>
-                        <img src="./icons/get/mir_pay.svg" width="32px" height="24px">
-                        <span class="card-number text_font">1234 56•• •••• 1234</span>
-                    </label>
-                    <label class="pay-ways__option">
-                        <input type="radio">
-                        <img src="./icons/get/visa_pay.svg" width="32px" height="24px">
-                        <span class="card-number text_font">1234 56•• •••• 1234</span>
-                    </label>
-                    <label class="pay-ways__option">
-                        <input type="radio">
-                        <img src="./icons/get/mastercard_pay.svg" width="32px" height="24px">
-                        <span class="card-number text_font">1234 56•• •••• 1234</span>
-                    </label>
-                    <label class="pay-ways__option">
-                        <input type="radio">
-                        <img src="./icons/get/maestro_pay.svg" width="32px" height="24px">
-                        <span class="card-number text_font">1234 56•• •••• 1234</span>
-                    </label>
-                </main>
+                <main class="pay-ways"></main>
             </section>
 
-            <button class="button bg-color_pink subtitle-accent_font color_white">Выбрать</button>
+            <button class="button close-popup-pay bg-color_pink subtitle-accent_font color_white">Выбрать</button>
         </div>
     </div>
+    <template id="pay-ways__optionTmp">
+        <label class="pay-ways__option">
+            <input type="radio">
+            <img src="./icons/get/maestro_pay.svg" width="32px" height="24px">
+            <span class="card-number text_font">1234 56•• •••• 1234</span>
+        </label>
+    </template>
+
     <div class="popup__bg popup-delivery__bg">
         <div class="popup popup-delivery">
             <section>
@@ -179,39 +167,45 @@
 
                 <main>
                     <section class="delivery-ways">
-                        <button class="caption-bold_font color_black button_border-color_chosen">В пункт выдачи</button>
-                        <button class="caption-bold_font color_black button_border-color_disabled">Курьером</button>
+                        <button class="pickUp_pointsBtn caption-bold_font color_black button_border-color_chosen">В пункт выдачи</button>
+                        <button class="delivery_pointsBtn caption-bold_font color_black button_border-color_disabled">Курьером</button>
                     </section>
                     <section class="delivery-addresses">
                         <h4 class="caption-bold_font color_black">Мои адреса</h4>
-                        <label class="delivery-addresses__option">
-                            <input type="radio">
-                            <span class="card-number text_font">Бишкек, улица Табышалиева, 57</span>
-                            <button class="actions__to-basket">
-                                <img src="./icons/basket/to_basket.svg" width="20px" height="20px">
-                            </button>
-                        </label>
-                        <label class="delivery-addresses__option">
-                            <input type="radio">
-                            <span class="card-number text_font">Бишкек, улица Жукеева-Пудовкина, 77/1</span>
-                            <button class="actions__to-basket">
-                                <img src="./icons/basket/to_basket.svg" width="20px" height="20px">
-                            </button>
-                        </label>
-                        <label class="delivery-addresses__option">
-                            <input type="radio">
-                            <span class="card-number text_font">Бишкек, микрорайон Джал, улица Ахунбаева Исы, 67/1</span>
-                            <button class="actions__to-basket">
-                                <img src="./icons/basket/to_basket.svg" width="20px" height="20px">
-                            </button>
-                        </label>
                     </section>
                 </main>
             </section>
 
-            <button class="button bg-color_pink subtitle-accent_font color_white">Выбрать</button>
+            <button class="button close-popup-delivery bg-color_pink subtitle-accent_font color_white">Выбрать</button>
         </div>
     </div>
+    <template id="pickUp_pointsTmp">
+        <label class="delivery-addresses__option pickUp_points display_n">
+            <input type="radio">
+            <span class="address card-number text_font"></span>
+            <button class="actions__to-basket">
+                <img src="./icons/basket/to_basket.svg" width="20px" height="20px">
+            </button>
+        </label>
+    </template>
+    <template id="delivery_pointsTmp">
+        <label class="delivery-addresses__option delivery_points">
+            <input type="radio">
+            <section class="caption_font">
+                <span class="address card-number text_font"></span>
+                <section class="point_rating">
+                    <div class="rating">
+                        <img src="./icons/get/star.svg">
+                        <span>4.99</span>
+                    </div>
+                    <span class="color_lightgray">Пункт выдачи</span>
+                </section>
+            </section>
+            <button class="actions__to-basket">
+                <img src="./icons/basket/to_basket.svg" width="20px" height="20px">
+            </button>
+        </label>
+    </template>
 
 
     <div class="wrapper wrapper_bg-color">
@@ -293,7 +287,7 @@
                         <div class="way-delivery__point">
                             <h4 class="subtitle_font">Пункт выдачи</h4>
                             <div class="point-info">
-                                <p class="text_font">Бишкек, улица Ахматбека Суюмбаева, 12/1</p>
+                                <p class="point_address text_font">Бишкек, улица Ахматбека Суюмбаева, 12/1</p>
                                 <div class="card-rating caption_font">
                                     <div class="rating">
                                         <img src="./icons/get/star.svg">
@@ -414,7 +408,7 @@
                         <div class="subtitle-accent_font">Доставка в пункт выдачи</div>
                         <img class="open-popup-delivery edit-btn" src="./icons/get/edit.svg" width="16px" height="16px">
                     </div>
-                    <p class="caption_font">Бишкек, улица Ахматбека Суюмбаева, 12/1</p>
+                    <p class="point_address caption_font">Бишкек, улица Ахматбека Суюмбаева, 12/1</p>
                     <span class="total__delivery-period caption_font color_pink">5–8 фев</span>
                 </div>
                 <div class="total__bonus bg-color_smoky-dark">
@@ -471,7 +465,6 @@
             <a class="tab"><img src="./icons/tabbar/profile.svg"></a>
         </section>
     </div>
-
 
 
     <script>
